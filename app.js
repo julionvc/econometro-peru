@@ -200,7 +200,7 @@ function updateStatusIndicator(status, message) {
     badge.innerHTML = `<span class="h-2 w-2 rounded-full bg-emerald-500 pulse-green"></span> <span>Conectado a BCRP API</span>`;
   } else if (status === 'local') {
     badge.classList.add('bg-blue-50', 'text-blue-700', 'border', 'border-blue-200');
-    badge.innerHTML = `<span class="h-2 w-2 rounded-full bg-blue-500 pulse-green"></span> <span>Caché Local (datos_dashboard.json)</span>`;
+    badge.innerHTML = `<span class="h-2 w-2 rounded-full bg-blue-500 pulse-green"></span> <span>Conectado (Base de Datos Central)</span>`;
   } else {
     badge.classList.add('bg-orange-50', 'text-orange-700', 'border', 'border-orange-200');
     badge.innerHTML = `<span class="h-2 w-2 rounded-full bg-orange-500"></span> <span>Modo Simulación (Offline)</span>`;
