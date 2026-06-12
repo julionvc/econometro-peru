@@ -189,7 +189,7 @@
         </div>
       </section>
 
-      <!-- Panel Derecho: Solidez y Reservas -->
+      <!-- Panel Derecho: Solidez y Reservas (Comparativa Regional) -->
       <section class="lg:col-span-5 space-y-6 flex flex-col justify-between">
         
         <!-- Bloque RIN -->
@@ -204,21 +204,60 @@
           
           <div class="py-2">
             <div class="text-2xl lg:text-3xl font-extrabold text-navy-900 font-mono tracking-tight" id="rin-val">$ 75,420 M</div>
-            <div class="text-xs text-emerald-600 font-semibold mt-1">
+            <div id="rin-change-text" class="text-xs font-semibold mt-1">
               <i class="fa-solid fa-circle-up mr-1"></i>+1,280M de dólares este año
             </div>
           </div>
 
-          <div class="space-y-2 mt-4">
-            <div class="flex justify-between text-2xs font-semibold text-slate-500 uppercase">
-              <span>Nivel de Cobertura</span>
-              <span id="rin-meta">Meta de Seguridad: 27.5% PBI</span>
+          <!-- Comparativa RIN % PBI -->
+          <div class="space-y-2.5 mt-4 pt-4 border-t border-slate-100">
+            <div class="text-2xs font-bold text-slate-500 uppercase tracking-wider mb-2">Reservas como % del PBI (Blindaje Financiero)</div>
+            
+            <!-- PE -->
+            <div class="space-y-1">
+              <div class="flex justify-between text-2xs font-semibold">
+                <span class="text-slate-800 flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span>Perú (RIN Actual)</span>
+                <span class="text-navy-900 font-bold" id="rin-val-pct">28.5%</span>
+              </div>
+              <div class="progress-track h-2 bg-slate-100">
+                <div id="rin-bar-pe" class="progress-indicator bg-blue-600 rounded-full" style="width: 28.5%"></div>
+              </div>
             </div>
-            <div class="progress-track h-2.5">
-              <div id="rin-bar" class="progress-indicator bg-blue-600" style="width: 0%"></div>
+
+            <!-- CO -->
+            <div class="space-y-1">
+              <div class="flex justify-between text-2xs font-semibold">
+                <span class="text-slate-500 flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>Colombia</span>
+                <span class="text-slate-600 font-medium">16.5%</span>
+              </div>
+              <div class="progress-track h-2 bg-slate-100">
+                <div class="progress-indicator bg-slate-400 rounded-full" style="width: 16.5%"></div>
+              </div>
             </div>
-            <p class="text-[10px] text-slate-400">Garantiza liquidez internacional y solvencia soberana del Sol (Serie PD01890AM)</p>
+
+            <!-- CL -->
+            <div class="space-y-1">
+              <div class="flex justify-between text-2xs font-semibold">
+                <span class="text-slate-500 flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>Chile</span>
+                <span class="text-slate-600 font-medium">14.0%</span>
+              </div>
+              <div class="progress-track h-2 bg-slate-100">
+                <div class="progress-indicator bg-slate-400 rounded-full" style="width: 14.0%"></div>
+              </div>
+            </div>
+
+            <!-- MX -->
+            <div class="space-y-1">
+              <div class="flex justify-between text-2xs font-semibold">
+                <span class="text-slate-500 flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>México</span>
+                <span class="text-slate-600 font-medium">9.8%</span>
+              </div>
+              <div class="progress-track h-2 bg-slate-100">
+                <div class="progress-indicator bg-slate-400 rounded-full" style="width: 9.8%"></div>
+              </div>
+            </div>
           </div>
+          <p class="text-[10px] text-slate-400 mt-2">Nivel de reservas relativas que garantizan la liquidez externa del Sol peruano (Serie PD01890AM)</p>
         </div>
 
         <!-- Bloque Deuda Pública -->
@@ -238,16 +277,46 @@
             </div>
           </div>
 
-          <div class="space-y-2 mt-4">
-            <div class="flex justify-between text-2xs font-semibold text-slate-500 uppercase">
-              <span>Uso del Límite de Estabilidad</span>
-              <span id="deuda-pct">Límite Legal: 38.0%</span>
+          <!-- Comparativa Deuda % PBI -->
+          <div class="space-y-2.5 mt-4 pt-4 border-t border-slate-100">
+            <div class="text-2xs font-bold text-slate-500 uppercase tracking-wider mb-2">Deuda Pública como % del PBI (Sostenibilidad)</div>
+            
+            <!-- PE -->
+            <div class="space-y-1">
+              <div class="flex justify-between text-2xs font-semibold">
+                <span class="text-slate-800 flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span>Perú (Deuda Actual)</span>
+                <span class="text-navy-900 font-bold" id="deuda-val-pct">32.8%</span>
+              </div>
+              <div class="progress-track h-2 bg-slate-100 relative">
+                <!-- Límite Legal MEF (38%) -->
+                <div class="absolute top-0 bottom-0 w-[2px] bg-red-500/50 z-10" style="left: 38%" title="Límite Legal MEF (38%)"></div>
+                <div id="deuda-bar-pe" class="progress-indicator bg-blue-600 rounded-full" style="width: 32.8%"></div>
+              </div>
             </div>
-            <div class="progress-track h-2.5">
-              <div id="deuda-bar" class="progress-indicator bg-slate-600" style="width: 0%"></div>
+
+            <!-- CL -->
+            <div class="space-y-1">
+              <div class="flex justify-between text-2xs font-semibold">
+                <span class="text-slate-500 flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>Chile</span>
+                <span class="text-slate-600 font-medium">39.5%</span>
+              </div>
+              <div class="progress-track h-2 bg-slate-100">
+                <div class="progress-indicator bg-slate-400 rounded-full" style="width: 39.5%"></div>
+              </div>
             </div>
-            <p class="text-[10px] text-slate-400">Rendimiento bajo normas de responsabilidad y transparencia fiscal del MEF</p>
+
+            <!-- Latam -->
+            <div class="space-y-1">
+              <div class="flex justify-between text-2xs font-semibold">
+                <span class="text-slate-500 flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-orange-400"></span>Promedio Latam</span>
+                <span class="text-orange-600 font-bold">60.2%</span>
+              </div>
+              <div class="progress-track h-2 bg-slate-100">
+                <div class="progress-indicator bg-orange-500 rounded-full" style="width: 60.2%"></div>
+              </div>
+            </div>
           </div>
+          <p class="text-[10px] text-slate-400 mt-2">Límite prudencial de la Ley de Transparencia Fiscal de Perú: 38% del PBI</p>
         </div>
 
         <!-- Bloque Riesgo País -->
@@ -262,21 +331,60 @@
 
           <div class="py-2">
             <div class="text-2xl lg:text-3xl font-extrabold text-navy-900 font-mono tracking-tight" id="embi-val">134 bps</div>
-            <div class="text-xs text-blue-600 font-semibold mt-1">
+            <div id="embi-change-text" class="text-xs font-semibold mt-1">
               <i class="fa-solid fa-circle-down mr-1"></i>-4 bps vs semana anterior
             </div>
           </div>
 
-          <div class="space-y-2 mt-4">
-            <div class="flex justify-between text-2xs font-semibold text-slate-500 uppercase">
-              <span>Diferencial de Tasas</span>
-              <span id="embi-comp">Promedio Latam: 320 bps</span>
+          <!-- Comparativa Riesgo País -->
+          <div class="space-y-2.5 mt-4 pt-4 border-t border-slate-100">
+            <div class="text-2xs font-bold text-slate-500 uppercase tracking-wider mb-2">Diferencial de Riesgo EMBI+ (Menor es Mejor)</div>
+            
+            <!-- PE -->
+            <div class="space-y-1">
+              <div class="flex justify-between text-2xs font-semibold">
+                <span class="text-slate-800 flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span>Perú (Riesgo Actual)</span>
+                <span class="text-navy-900 font-bold" id="embi-val-pct">134 bps</span>
+              </div>
+              <div class="progress-track h-2 bg-slate-100">
+                <div id="embi-bar-pe" class="progress-indicator bg-blue-600 rounded-full" style="width: 33.5%"></div>
+              </div>
             </div>
-            <div class="progress-track h-2.5">
-              <div id="embi-bar" class="progress-indicator bg-blue-600" style="width: 0%"></div>
+
+            <!-- CL -->
+            <div class="space-y-1">
+              <div class="flex justify-between text-2xs font-semibold">
+                <span class="text-slate-500 flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>Chile</span>
+                <span class="text-slate-600 font-medium">142 bps</span>
+              </div>
+              <div class="progress-track h-2 bg-slate-100">
+                <div class="progress-indicator bg-slate-400 rounded-full" style="width: 35.5%"></div>
+              </div>
             </div>
-            <p class="text-[10px] text-slate-400">Diferencial frente a los bonos del Tesoro de EE.UU. (Serie PD04691AM)</p>
+
+            <!-- BR -->
+            <div class="space-y-1">
+              <div class="flex justify-between text-2xs font-semibold">
+                <span class="text-slate-500 flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>Brasil</span>
+                <span class="text-slate-600 font-medium">200 bps</span>
+              </div>
+              <div class="progress-track h-2 bg-slate-100">
+                <div class="progress-indicator bg-slate-400 rounded-full" style="width: 50%"></div>
+              </div>
+            </div>
+
+            <!-- Latam -->
+            <div class="space-y-1">
+              <div class="flex justify-between text-2xs font-semibold">
+                <span class="text-slate-500 flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-orange-400"></span>Promedio Latam</span>
+                <span class="text-orange-600 font-bold">320 bps</span>
+              </div>
+              <div class="progress-track h-2 bg-slate-100">
+                <div class="progress-indicator bg-orange-500 rounded-full" style="width: 80%"></div>
+              </div>
+            </div>
           </div>
+          <p class="text-[10px] text-slate-400 mt-2">Diferencial de tasa en puntos básicos (bps) sobre bonos del Tesoro de EE.UU. (Serie PD04691AM)</p>
         </div>
 
       </section>
@@ -379,6 +487,11 @@
       <div class="text-[11px] text-slate-500 text-center md:text-right">
         <p>Inspirado en estructuras lineales financieras limpias y modulares.</p>
       </div>
+    </div>
+    
+    <!-- Disclaimer Legal -->
+    <div class="max-w-7xl mx-auto border-t border-slate-800/80 mt-6 pt-6 text-[10px] text-slate-500 leading-relaxed text-justify">
+      <p><strong>Descargo de responsabilidad (Disclaimer):</strong> La información presentada en este dashboard tiene fines exclusivamente informativos y educativos. Los datos macroeconómicos se obtienen y procesan de forma automatizada a partir de fuentes públicas oficiales (BCRP y organismos multilaterales). Esta plataforma no constituye asesoría financiera, cambiaria o de inversión. Los autores no garantizan la ausencia de errores u omisiones en el origen de los datos, ni se responsabilizan por decisiones comerciales o financieras tomadas con base en la información aquí mostrada.</p>
     </div>
   </footer>
 

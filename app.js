@@ -482,61 +482,63 @@ function renderEstructuraSolidez() {
 
   // 2.1 Reservas Internacionales Netas (RIN)
   const rinVal = document.getElementById('rin-val');
-  const rinBar = document.getElementById('rin-bar');
-  const rinMeta = document.getElementById('rin-meta');
-  const rinChangeText = document.querySelector('#rin-val + div');
+  const rinValPct = document.getElementById('rin-val-pct');
+  const rinBarPe = document.getElementById('rin-bar-pe');
+  const rinChangeText = document.getElementById('rin-change-text');
   
   rinVal.innerText = `$ ${latest.rin.toLocaleString('en-US')} M`;
-  const rinPercent = Math.min(100, (latest.rin / 90000) * 100);
-  rinBar.style.width = `${rinPercent}%`;
   
-  const rinMetaSec = state.data.indicadores_actuales.rin.meta_seguridad_pbi;
-  rinMeta.innerText = `Meta de Seguridad: ${rinMetaSec}% del PBI (Superado)`;
+  // Calcular porcentaje del PBI dinámicamente (PBI estimado Perú: $264,000 M)
+  const rinPctPbi = Math.min(100, (latest.rin / 2640)).toFixed(1);
+  if (rinValPct) rinValPct.innerText = `${rinPctPbi}%`;
+  if (rinBarPe) rinBarPe.style.width = `${rinPctPbi}%`;
 
   const rinDiff = latest.rin - comp.rin;
   const rinSign = rinDiff >= 0 ? '+' : '';
   const rinColorClass = rinDiff >= 0 ? 'text-emerald-600' : 'text-orange-600';
   const rinIcon = rinDiff >= 0 ? 'fa-circle-up' : 'fa-circle-down';
-  rinChangeText.innerHTML = `<i class="fa-solid ${rinIcon} mr-1"></i>${rinSign}${rinDiff.toLocaleString('en-US')}M dólares vs ${labelSuffix}`;
-  rinChangeText.className = `text-xs font-semibold mt-1 ${rinColorClass}`;
+  if (rinChangeText) {
+    rinChangeText.innerHTML = `<i class="fa-solid ${rinIcon} mr-1"></i>${rinSign}${rinDiff.toLocaleString('en-US')}M dólares vs ${labelSuffix}`;
+    rinChangeText.className = `text-xs font-semibold mt-1 ${rinColorClass}`;
+  }
 
   // 2.2 Deuda Pública / PBI
   const deudaVal = document.getElementById('deuda-val');
-  const deudaBar = document.getElementById('deuda-bar');
-  const deudaPct = document.getElementById('deuda-pct');
+  const deudaValPct = document.getElementById('deuda-val-pct');
+  const deudaBarPe = document.getElementById('deuda-bar-pe');
   
   const deudaActual = state.data.indicadores_actuales.deuda_publica.valor;
-  const deudaLimite = state.data.indicadores_actuales.deuda_publica.limite_prudencial;
   deudaVal.innerText = `${deudaActual.toFixed(1)}% del PBI`;
-  const deudaPercent = Math.min(100, (deudaActual / deudaLimite) * 100);
-  deudaBar.style.width = `${deudaPercent}%`;
-  deudaPct.innerText = `Límite Legal Sostenible: ${deudaLimite}%`;
-  
-  if (deudaActual > 35) {
-    deudaBar.className = 'progress-indicator bg-orange-500';
-  } else {
-    deudaBar.className = 'progress-indicator bg-slate-600';
+  if (deudaValPct) deudaValPct.innerText = `${deudaActual.toFixed(1)}%`;
+  if (deudaBarPe) {
+    deudaBarPe.style.width = `${deudaActual}%`;
+    if (deudaActual > 35) {
+      deudaBarPe.className = 'progress-indicator bg-orange-500 rounded-full';
+    } else {
+      deudaBarPe.className = 'progress-indicator bg-blue-600 rounded-full';
+    }
   }
 
   // 2.3 Riesgo País (EMBI+ Perú)
   const embiVal = document.getElementById('embi-val');
-  const embiBar = document.getElementById('embi-bar');
-  const embiComp = document.getElementById('embi-comp');
-  const embiChangeText = document.querySelector('#embi-val + div');
+  const embiValPct = document.getElementById('embi-val-pct');
+  const embiBarPe = document.getElementById('embi-bar-pe');
+  const embiChangeText = document.getElementById('embi-change-text');
   
   embiVal.innerText = `${latest.riesgo_pais} bps`;
-  const embiPercent = Math.min(100, (latest.riesgo_pais / 400) * 100);
-  embiBar.style.width = `${embiPercent}%`;
+  if (embiValPct) embiValPct.innerText = `${latest.riesgo_pais} bps`;
   
-  const promLatam = state.data.indicadores_actuales.promedio_latam;
-  embiComp.innerText = `Promedio Regional: ${promLatam} bps (Perú es el menor)`;
+  const embiPercent = Math.min(100, (latest.riesgo_pais / 400) * 100);
+  if (embiBarPe) embiBarPe.style.width = `${embiPercent}%`;
 
   const embiDiff = latest.riesgo_pais - comp.riesgo_pais;
   const embiSign = embiDiff >= 0 ? '+' : '';
   const embiColorClass = embiDiff <= 0 ? 'text-blue-600' : 'text-orange-600';
   const embiIcon = embiDiff <= 0 ? 'fa-circle-down' : 'fa-circle-up';
-  embiChangeText.innerHTML = `<i class="fa-solid ${embiIcon} mr-1"></i>${embiSign}${embiDiff} bps vs ${labelSuffix}`;
-  embiChangeText.className = `text-xs font-semibold mt-1 ${embiColorClass}`;
+  if (embiChangeText) {
+    embiChangeText.innerHTML = `<i class="fa-solid ${embiIcon} mr-1"></i>${embiSign}${embiDiff} bps vs ${labelSuffix}`;
+    embiChangeText.className = `text-xs font-semibold mt-1 ${embiColorClass}`;
+  }
 }
 
 // 3. Bloque de Coyuntura Semanal (Barras Bidireccionales)
