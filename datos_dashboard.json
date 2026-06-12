@@ -1,0 +1,249 @@
+{
+  "metadata": {
+    "fecha_actualizacion": "2026-06-11",
+    "fuente": "Banco Central de Reserva del Perú (BCRPData) & Estimaciones Propias",
+    "series": {
+      "tipo_cambio": "PD01853AM",
+      "rin": "PD01890AM",
+      "riesgo_pais": "PD04691AM",
+      "inflacion": "PM01211PA"
+    }
+  },
+  "indicadores_actuales": {
+    "tipo_cambio": {
+      "valor": 3.742,
+      "cambio_porcentaje": -0.15,
+      "tendencia": "estable",
+      "fecha": "2026-06-11"
+    },
+    "inflacion": {
+      "valor": 2.42,
+      "cambio_porcentaje": 0.05,
+      "tendencia": "dentro_rango",
+      "fecha": "2026-05"
+    },
+    "rin": {
+      "valor": 75420,
+      "cambio_anual_m": 1280,
+      "meta_seguridad_pbi": 27.5,
+      "fecha": "2026-06-10"
+    },
+    "deuda_publica": {
+      "valor": 32.8,
+      "limite_prudencial": 38.0,
+      "tendencia": "sostenible",
+      "fecha": "2026-05"
+    },
+    "riesgo_pais": {
+      "valor": 134,
+      "cambio_bps": -4,
+      "promedio_latam": 320,
+      "fecha": "2026-06-11"
+    }
+  },
+  "historico": [
+    {"fecha": "2026-01-02", "tipo_cambio": 3.712, "rin": 74120, "riesgo_pais": 142, "inflacion": 2.89, "intervencion": 0},
+    {"fecha": "2026-01-09", "tipo_cambio": 3.718, "rin": 74150, "riesgo_pais": 140, "inflacion": 2.89, "intervencion": 0},
+    {"fecha": "2026-01-16", "tipo_cambio": 3.725, "rin": 74080, "riesgo_pais": 139, "inflacion": 2.89, "intervencion": 0},
+    {"fecha": "2026-01-23", "tipo_cambio": 3.738, "rin": 74100, "riesgo_pais": 141, "inflacion": 2.89, "intervencion": 0},
+    {"fecha": "2026-01-30", "tipo_cambio": 3.745, "rin": 73950, "riesgo_pais": 144, "inflacion": 2.80, "intervencion": -20},
+    {"fecha": "2026-02-06", "tipo_cambio": 3.762, "rin": 73800, "riesgo_pais": 148, "inflacion": 2.72, "intervencion": -50},
+    {"fecha": "2026-02-13", "tipo_cambio": 3.785, "rin": 73650, "riesgo_pais": 150, "inflacion": 2.72, "intervencion": -80},
+    {"fecha": "2026-02-20", "tipo_cambio": 3.792, "rin": 73700, "riesgo_pais": 152, "inflacion": 2.72, "intervencion": -30},
+    {"fecha": "2026-02-27", "tipo_cambio": 3.805, "rin": 73500, "riesgo_pais": 155, "inflacion": 2.65, "intervencion": -120},
+    {"fecha": "2026-03-06", "tipo_cambio": 3.818, "rin": 73400, "riesgo_pais": 154, "inflacion": 2.58, "intervencion": -150},
+    {"fecha": "2026-03-13", "tipo_cambio": 3.824, "rin": 73600, "riesgo_pais": 149, "inflacion": 2.58, "intervencion": -40},
+    {"fecha": "2026-03-20", "tipo_cambio": 3.801, "rin": 74200, "riesgo_pais": 143, "inflacion": 2.58, "intervencion": 10},
+    {"fecha": "2026-03-27", "tipo_cambio": 3.782, "rin": 74500, "riesgo_pais": 139, "inflacion": 2.49, "intervencion": 30},
+    {"fecha": "2026-04-03", "tipo_cambio": 3.771, "rin": 74620, "riesgo_pais": 138, "inflacion": 2.41, "intervencion": 0},
+    {"fecha": "2026-04-10", "tipo_cambio": 3.765, "rin": 74750, "riesgo_pais": 136, "inflacion": 2.41, "intervencion": 0},
+    {"fecha": "2026-04-17", "tipo_cambio": 3.758, "rin": 74900, "riesgo_pais": 135, "inflacion": 2.41, "intervencion": 0},
+    {"fecha": "2026-04-24", "tipo_cambio": 3.749, "rin": 75020, "riesgo_pais": 133, "inflacion": 2.41, "intervencion": 0},
+    {"fecha": "2026-05-01", "tipo_cambio": 3.741, "rin": 75150, "riesgo_pais": 132, "inflacion": 2.38, "intervencion": 0},
+    {"fecha": "2026-05-08", "tipo_cambio": 3.738, "rin": 75200, "riesgo_pais": 130, "inflacion": 2.38, "intervencion": 0},
+    {"fecha": "2026-05-15", "tipo_cambio": 3.732, "rin": 75310, "riesgo_pais": 128, "inflacion": 2.38, "intervencion": 0},
+    {"fecha": "2026-05-22", "tipo_cambio": 3.739, "rin": 75290, "riesgo_pais": 131, "inflacion": 2.38, "intervencion": 0},
+    {"fecha": "2026-05-29", "tipo_cambio": 3.744, "rin": 75350, "riesgo_pais": 133, "inflacion": 2.42, "intervencion": 0},
+    {"fecha": "2026-06-05", "tipo_cambio": 3.746, "rin": 75380, "riesgo_pais": 135, "inflacion": 2.42, "intervencion": 0},
+    {"fecha": "2026-06-08", "tipo_cambio": 3.745, "rin": 75400, "riesgo_pais": 134, "inflacion": 2.42, "intervencion": 0},
+    {"fecha": "2026-06-09", "tipo_cambio": 3.743, "rin": 75410, "riesgo_pais": 135, "inflacion": 2.42, "intervencion": 0},
+    {"fecha": "2026-06-10", "tipo_cambio": 3.742, "rin": 75420, "riesgo_pais": 134, "inflacion": 2.42, "intervencion": 0},
+    {"fecha": "2026-06-11", "tipo_cambio": 3.742, "rin": 75420, "riesgo_pais": 134, "inflacion": 2.42, "intervencion": 0}
+  ],
+  "coyuntura_semanal": {
+    "flujos_negativos": [
+      {
+        "categoria": "Ruido Político",
+        "descripcion": "Incertidumbre legislativa y tensiones políticas locales",
+        "monto_millones": 210,
+        "porcentaje_impacto": 42
+      },
+      {
+        "categoria": "Incremento de Tasas FED",
+        "descripcion": "Presión alcista global de la Reserva Federal de EE.UU.",
+        "monto_millones": 150,
+        "porcentaje_impacto": 30
+      },
+      {
+        "categoria": "Importaciones Corporativas",
+        "descripcion": "Demanda estacional de dólares de grandes empresas",
+        "monto_millones": 90,
+        "porcentaje_impacto": 18
+      },
+      {
+        "categoria": "Salida de Portafolios",
+        "descripcion": "Retiro marginal de inversores offshore en renta fija",
+        "monto_millones": 50,
+        "porcentaje_impacto": 10
+      }
+    ],
+    "flujos_positivos": [
+      {
+        "categoria": "Exportaciones Mineras",
+        "descripcion": "Ingreso de divisas por ventas de cobre, oro y zinc",
+        "monto_millones": 340,
+        "porcentaje_impacto": 48
+      },
+      {
+        "categoria": "Remesas del Exterior",
+        "descripcion": "Flujo continuo de peruanos en el extranjero",
+        "monto_millones": 160,
+        "porcentaje_impacto": 23
+      },
+      {
+        "categoria": "Intervención BCRP",
+        "descripcion": "Inyección cambiaria preventiva en ventanilla interbancaria",
+        "monto_millones": 120,
+        "porcentaje_impacto": 17
+      },
+      {
+        "categoria": "Inversión Extranjera Directa",
+        "descripcion": "Aporte de capital para proyectos de infraestructura local",
+        "monto_millones": 85,
+        "porcentaje_impacto": 12
+      }
+    ]
+  },
+  "regiones": {
+    "PE-ANC": {
+      "nombre": "Áncash",
+      "canon_minero": 1240,
+      "pbi_regional": "Mining-heavy",
+      "pbi_aporte": 3.8,
+      "flujo_comercial": "Alto",
+      "actividad_principal": "Minería (Cobre, Zinc - Antamina)",
+      "estado": "Crecimiento Sostenido",
+      "coordenadas": "translate(220, 310)"
+    },
+    "PE-ARE": {
+      "nombre": "Arequipa",
+      "canon_minero": 980,
+      "pbi_regional": "Industrial & Mining",
+      "pbi_aporte": 5.4,
+      "flujo_comercial": "Alto",
+      "actividad_principal": "Minería (Cobre - Cerro Verde) e Industria",
+      "estado": "Crecimiento Moderado",
+      "coordenadas": "translate(420, 620)"
+    },
+    "PE-LMA": {
+      "nombre": "Lima Metropolitana & Prov.",
+      "canon_minero": 45,
+      "pbi_regional": "Services & Manufacturing",
+      "pbi_aporte": 45.2,
+      "flujo_comercial": "Ultra Alto",
+      "actividad_principal": "Servicios Financieros, Comercio, Manufactura",
+      "estado": "Estable / Expansión",
+      "coordenadas": "translate(250, 420)"
+    },
+    "PE-CUS": {
+      "nombre": "Cusco",
+      "canon_minero": 820,
+      "pbi_regional": "Gas & Tourism",
+      "pbi_aporte": 4.1,
+      "flujo_comercial": "Medio-Alto",
+      "actividad_principal": "Gas de Camisea y Turismo Internacional",
+      "estado": "Recuperación Fuerte",
+      "coordenadas": "translate(410, 490)"
+    },
+    "PE-PIU": {
+      "nombre": "Piura",
+      "canon_minero": 310,
+      "pbi_regional": "Agro & Fishing & Petroleum",
+      "pbi_aporte": 4.3,
+      "flujo_comercial": "Alto",
+      "actividad_principal": "Agroexportación, Pesca Harinera y Petróleo",
+      "estado": "Estable",
+      "coordenadas": "translate(110, 150)"
+    },
+    "PE-LAL": {
+      "nombre": "La Libertad",
+      "canon_minero": 420,
+      "pbi_regional": "Agro-industrial & Gold",
+      "pbi_aporte": 4.8,
+      "flujo_comercial": "Alto",
+      "actividad_principal": "Agroexportación (Arándanos/Espárragos) y Oro",
+      "estado": "Crecimiento Alto",
+      "coordenadas": "translate(170, 240)"
+    },
+    "PE-CAJ": {
+      "nombre": "Cajamarca",
+      "canon_minero": 340,
+      "pbi_regional": "Mining & Agriculture",
+      "pbi_aporte": 2.6,
+      "flujo_comercial": "Medio",
+      "actividad_principal": "Minería Aurífera (Yanacocha) y Lácteos",
+      "estado": "Desafío Social / Estable",
+      "coordenadas": "translate(190, 180)"
+    },
+    "PE-MOQ": {
+      "nombre": "Moquegua",
+      "canon_minero": 480,
+      "pbi_regional": "Mining Export",
+      "pbi_aporte": 1.9,
+      "flujo_comercial": "Medio",
+      "actividad_principal": "Cobre de Alta Calidad (Quellaveco)",
+      "estado": "Boom Minero",
+      "coordenadas": "translate(460, 680)"
+    },
+    "PE-TAC": {
+      "nombre": "Tacna",
+      "canon_minero": 290,
+      "pbi_regional": "Border Trade & Copper",
+      "pbi_aporte": 1.5,
+      "flujo_comercial": "Alto (Frontera)",
+      "actividad_principal": "Minería (Toquepala) y Comercio Transfronterizo",
+      "estado": "Estable",
+      "coordenadas": "translate(490, 710)"
+    },
+    "PE-ICA": {
+      "nombre": "Ica",
+      "canon_minero": 190,
+      "pbi_regional": "Agro-industrial & Iron",
+      "pbi_aporte": 3.2,
+      "flujo_comercial": "Alto",
+      "actividad_principal": "Agroexportación (Uva/Pisco) y Hierro (Marcona)",
+      "estado": "Crecimiento Sostenido",
+      "coordenadas": "translate(290, 500)"
+    },
+    "PE-LOR": {
+      "nombre": "Loreto",
+      "canon_minero": 180,
+      "pbi_regional": "Hydrocarbons & Tourism",
+      "pbi_aporte": 1.4,
+      "flujo_comercial": "Medio",
+      "actividad_principal": "Extracción de Petróleo y Ecoturismo",
+      "estado": "Estable",
+      "coordenadas": "translate(350, 150)"
+    },
+    "PE-PUN": {
+      "nombre": "Puno",
+      "canon_minero": 520,
+      "pbi_regional": "Mining & Altiplano Trade",
+      "pbi_aporte": 2.1,
+      "flujo_comercial": "Alto",
+      "actividad_principal": "Minería (Estaño/Oro) y Comercio Binacional",
+      "estado": "Crecimiento",
+      "coordenadas": "translate(490, 590)"
+    }
+  }
+}

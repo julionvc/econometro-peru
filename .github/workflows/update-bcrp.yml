@@ -1,0 +1,39 @@
+name: Actualización Diaria BCRP
+
+on:
+  schedule:
+    # Corre todos los días a las 23:30 UTC (6:30 PM en hora de Perú / PET)
+    - cron: '30 23 * * *'
+  workflow_dispatch:
+    # Permite ejecutar el flujo manualmente desde la pestaña Actions de GitHub
+
+permissions:
+  contents: write # Permite a las GitHub Actions hacer commit y push sobre la rama main
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Descargar repositorio
+      uses: actions/checkout@v4
+
+    - name: Configurar Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: Ejecutar script actualizador
+      run: node update_data.js
+
+    - name: Detectar cambios y hacer commit
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git add datos_dashboard.json
+        if git diff --quiet --cached; then
+          echo "No hay cambios en los datos del BCRP para hoy."
+        else
+          git commit -m "Auto-update: BCRP data [skip ci]"
+          git push origin main
+        fi

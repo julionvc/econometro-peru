@@ -1,0 +1,162 @@
+/* Modern CSS Styles for Económetro de Estabilidad Monetaria */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --color-bg: #f8fafc;
+  --color-card: #ffffff;
+  --color-navy: #0f172a;
+  --color-slate: #334155;
+  --color-slate-light: #64748b;
+  --color-slate-border: #e2e8f0;
+  
+  /* Financial status colors (Updated to Orange & Modern Blue) */
+  --color-blue: #2563eb;
+  --color-blue-glow: rgba(37, 99, 235, 0.15);
+  --color-emerald: #10b981;
+  --color-emerald-glow: rgba(16, 185, 129, 0.15);
+  --color-orange: #FF6B1A;
+  --color-orange-glow: rgba(255, 107, 26, 0.15);
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', 'Outfit', sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-navy);
+  letter-spacing: -0.01em;
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: 'Outfit', sans-serif;
+}
+
+/* Custom Scrollbar for premium feel */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Glassmorphism & Custom Shadow Panels */
+.premium-panel {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.03), 0 2px 8px -1px rgba(15, 23, 42, 0.02);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.premium-panel:hover {
+  border-color: rgba(203, 213, 225, 1);
+  box-shadow: 0 10px 25px -3px rgba(15, 23, 42, 0.05), 0 4px 12px -2px rgba(15, 23, 42, 0.03);
+}
+
+/* SVG Interactive Map Styling */
+.map-department {
+  fill: #e2e8f0;
+  stroke: #ffffff;
+  stroke-width: 1.5;
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+
+.map-department:hover {
+  fill: #cbd5e1;
+}
+
+.map-department.active-region {
+  fill: rgba(37, 99, 235, 0.08);
+  stroke: var(--color-blue);
+  stroke-width: 2.5;
+  filter: drop-shadow(0 0 8px rgba(37, 99, 235, 0.3));
+}
+
+.map-department.active-region:hover {
+  fill: rgba(37, 99, 235, 0.16);
+}
+
+/* Selected department styling for clarity */
+.map-department.selected-dept {
+  fill: rgba(37, 99, 235, 0.25) !important;
+  stroke: var(--color-blue) !important;
+  stroke-width: 3px !important;
+}
+
+/* Glow effects */
+.glow-blue {
+  box-shadow: 0 0 15px rgba(37, 99, 235, 0.25);
+}
+
+.glow-orange {
+  box-shadow: 0 0 15px rgba(255, 107, 26, 0.25);
+}
+
+/* Bidirectional Chart Animations */
+.bar-transition {
+  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Pill selector styling */
+.pill-button {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pill-button.active {
+  background-color: var(--color-navy);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+}
+
+/* Grid & Dots decorative elements */
+.grid-bg {
+  background-size: 20px 20px;
+  background-image: linear-gradient(to right, rgba(148, 163, 184, 0.05) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(148, 163, 184, 0.05) 1px, transparent 1px);
+}
+
+/* Technical progress gauge styling */
+.progress-track {
+  background-color: #f1f5f9;
+  border-radius: 9999px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-indicator {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Tooltip Custom styling */
+.custom-tooltip {
+  pointer-events: none;
+  z-index: 100;
+  transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
+}
+
+/* Pulse indicator */
+.pulse-green {
+  animation: pulse-animation-green 2s infinite;
+}
+
+@keyframes pulse-animation-green {
+  0% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
