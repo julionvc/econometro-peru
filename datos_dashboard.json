@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "fecha_actualizacion": "2026-06-11",
-    "fuente": "Banco Central de Reserva del Perú (BCRPData) & Estimaciones Propias",
+    "fecha_actualizacion": "2026-06-13",
+    "fuente": "Banco Central de Reserva del Perú (BCRPData) - Actualizado Automático",
     "series": {
       "tipo_cambio": "PD04638PD",
       "rin": "PD04650MD",
@@ -11,64 +11,1069 @@
   },
   "indicadores_actuales": {
     "tipo_cambio": {
-      "valor": 3.742,
-      "cambio_porcentaje": -0.15,
+      "valor": 3.392,
+      "cambio_porcentaje": 0,
       "tendencia": "estable",
-      "fecha": "2026-06-11"
+      "fecha": "2026-05-01"
     },
     "inflacion": {
-      "valor": 2.42,
+      "valor": 3.90505240621645,
       "cambio_porcentaje": 0.05,
       "tendencia": "dentro_rango",
       "fecha": "2026-05"
     },
     "rin": {
-      "valor": 75420,
+      "valor": 98857.92060517,
       "cambio_anual_m": 1280,
       "meta_seguridad_pbi": 27.5,
       "fecha": "2026-06-10"
     },
     "deuda_publica": {
       "valor": 32.8,
-      "limite_prudencial": 38.0,
+      "limite_prudencial": 38,
       "tendencia": "sostenible",
       "fecha": "2026-05"
     },
     "riesgo_pais": {
-      "valor": 134,
+      "valor": 117,
       "cambio_bps": -4,
       "promedio_latam": 320,
       "fecha": "2026-06-11"
     }
   },
   "historico": [
-    {"fecha": "2026-01-02", "tipo_cambio": 3.712, "rin": 74120, "riesgo_pais": 142, "inflacion": 2.89, "intervencion": 0},
-    {"fecha": "2026-01-09", "tipo_cambio": 3.718, "rin": 74150, "riesgo_pais": 140, "inflacion": 2.89, "intervencion": 0},
-    {"fecha": "2026-01-16", "tipo_cambio": 3.725, "rin": 74080, "riesgo_pais": 139, "inflacion": 2.89, "intervencion": 0},
-    {"fecha": "2026-01-23", "tipo_cambio": 3.738, "rin": 74100, "riesgo_pais": 141, "inflacion": 2.89, "intervencion": 0},
-    {"fecha": "2026-01-30", "tipo_cambio": 3.745, "rin": 73950, "riesgo_pais": 144, "inflacion": 2.80, "intervencion": -20},
-    {"fecha": "2026-02-06", "tipo_cambio": 3.762, "rin": 73800, "riesgo_pais": 148, "inflacion": 2.72, "intervencion": -50},
-    {"fecha": "2026-02-13", "tipo_cambio": 3.785, "rin": 73650, "riesgo_pais": 150, "inflacion": 2.72, "intervencion": -80},
-    {"fecha": "2026-02-20", "tipo_cambio": 3.792, "rin": 73700, "riesgo_pais": 152, "inflacion": 2.72, "intervencion": -30},
-    {"fecha": "2026-02-27", "tipo_cambio": 3.805, "rin": 73500, "riesgo_pais": 155, "inflacion": 2.65, "intervencion": -120},
-    {"fecha": "2026-03-06", "tipo_cambio": 3.818, "rin": 73400, "riesgo_pais": 154, "inflacion": 2.58, "intervencion": -150},
-    {"fecha": "2026-03-13", "tipo_cambio": 3.824, "rin": 73600, "riesgo_pais": 149, "inflacion": 2.58, "intervencion": -40},
-    {"fecha": "2026-03-20", "tipo_cambio": 3.801, "rin": 74200, "riesgo_pais": 143, "inflacion": 2.58, "intervencion": 10},
-    {"fecha": "2026-03-27", "tipo_cambio": 3.782, "rin": 74500, "riesgo_pais": 139, "inflacion": 2.49, "intervencion": 30},
-    {"fecha": "2026-04-03", "tipo_cambio": 3.771, "rin": 74620, "riesgo_pais": 138, "inflacion": 2.41, "intervencion": 0},
-    {"fecha": "2026-04-10", "tipo_cambio": 3.765, "rin": 74750, "riesgo_pais": 136, "inflacion": 2.41, "intervencion": 0},
-    {"fecha": "2026-04-17", "tipo_cambio": 3.758, "rin": 74900, "riesgo_pais": 135, "inflacion": 2.41, "intervencion": 0},
-    {"fecha": "2026-04-24", "tipo_cambio": 3.749, "rin": 75020, "riesgo_pais": 133, "inflacion": 2.41, "intervencion": 0},
-    {"fecha": "2026-05-01", "tipo_cambio": 3.741, "rin": 75150, "riesgo_pais": 132, "inflacion": 2.38, "intervencion": 0},
-    {"fecha": "2026-05-08", "tipo_cambio": 3.738, "rin": 75200, "riesgo_pais": 130, "inflacion": 2.38, "intervencion": 0},
-    {"fecha": "2026-05-15", "tipo_cambio": 3.732, "rin": 75310, "riesgo_pais": 128, "inflacion": 2.38, "intervencion": 0},
-    {"fecha": "2026-05-22", "tipo_cambio": 3.739, "rin": 75290, "riesgo_pais": 131, "inflacion": 2.38, "intervencion": 0},
-    {"fecha": "2026-05-29", "tipo_cambio": 3.744, "rin": 75350, "riesgo_pais": 133, "inflacion": 2.42, "intervencion": 0},
-    {"fecha": "2026-06-05", "tipo_cambio": 3.746, "rin": 75380, "riesgo_pais": 135, "inflacion": 2.42, "intervencion": 0},
-    {"fecha": "2026-06-08", "tipo_cambio": 3.745, "rin": 75400, "riesgo_pais": 134, "inflacion": 2.42, "intervencion": 0},
-    {"fecha": "2026-06-09", "tipo_cambio": 3.743, "rin": 75410, "riesgo_pais": 135, "inflacion": 2.42, "intervencion": 0},
-    {"fecha": "2026-06-10", "tipo_cambio": 3.742, "rin": 75420, "riesgo_pais": 134, "inflacion": 2.42, "intervencion": 0},
-    {"fecha": "2026-06-11", "tipo_cambio": 3.742, "rin": 75420, "riesgo_pais": 134, "inflacion": 2.42, "intervencion": 0}
+    {
+      "fecha": "2025-12-15",
+      "tipo_cambio": 3.3705,
+      "rin": 92419.14671657,
+      "riesgo_pais": 120,
+      "inflacion": 1.50879973918667,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2025-12-16",
+      "tipo_cambio": 3.37142857142857,
+      "rin": 92921.70704684,
+      "riesgo_pais": 124,
+      "inflacion": 1.50879973918667,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2025-12-17",
+      "tipo_cambio": 3.36914285714286,
+      "rin": 93534.39894381,
+      "riesgo_pais": 121,
+      "inflacion": 1.50879973918667,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2025-12-18",
+      "tipo_cambio": 3.36664285714286,
+      "rin": 93428.60171283,
+      "riesgo_pais": 127,
+      "inflacion": 1.50879973918667,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2025-12-19",
+      "tipo_cambio": 3.36785714285714,
+      "rin": 93305.24507474,
+      "riesgo_pais": 129,
+      "inflacion": 1.50879973918667,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2025-12-22",
+      "tipo_cambio": 3.36614285714286,
+      "rin": 93215.9294323,
+      "riesgo_pais": 128,
+      "inflacion": 1.50879973918667,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2025-12-23",
+      "tipo_cambio": 3.367,
+      "rin": 92140.76322942,
+      "riesgo_pais": 132,
+      "inflacion": 1.50879973918667,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2025-12-24",
+      "tipo_cambio": 3.365,
+      "rin": 91238.57508556,
+      "riesgo_pais": 134,
+      "inflacion": 1.50879973918667,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2025-12-29",
+      "tipo_cambio": 3.367,
+      "rin": 89665.10912947,
+      "riesgo_pais": 136,
+      "inflacion": 1.50879973918667,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2025-12-30",
+      "tipo_cambio": 3.36435714285714,
+      "rin": 89321.41408572,
+      "riesgo_pais": 137,
+      "inflacion": 1.50879973918667,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2025-12-31",
+      "tipo_cambio": 3.3636,
+      "rin": 90214.4842999,
+      "riesgo_pais": 135,
+      "inflacion": 1.50879973918667,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-01-05",
+      "tipo_cambio": 3.36485714285714,
+      "rin": 91697.45381022,
+      "riesgo_pais": 135,
+      "inflacion": 1.70091694832201,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-01-06",
+      "tipo_cambio": 3.36057142857143,
+      "rin": 94494.22858267,
+      "riesgo_pais": 136,
+      "inflacion": 1.70091694832201,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-01-07",
+      "tipo_cambio": 3.36257142857143,
+      "rin": 94533.09542679,
+      "riesgo_pais": 138,
+      "inflacion": 1.70091694832201,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-01-08",
+      "tipo_cambio": 3.36371428571429,
+      "rin": 94590.34138482,
+      "riesgo_pais": 136,
+      "inflacion": 1.70091694832201,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-01-09",
+      "tipo_cambio": 3.36171428571429,
+      "rin": 94720.5548694,
+      "riesgo_pais": 138,
+      "inflacion": 1.70091694832201,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-01-12",
+      "tipo_cambio": 3.36057142857143,
+      "rin": 94959.88020816,
+      "riesgo_pais": 135,
+      "inflacion": 1.70091694832201,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-01-13",
+      "tipo_cambio": 3.35857142857143,
+      "rin": 95299.96228906,
+      "riesgo_pais": 135,
+      "inflacion": 1.70091694832201,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-01-14",
+      "tipo_cambio": 3.35971428571429,
+      "rin": 95511.60117077,
+      "riesgo_pais": 138,
+      "inflacion": 1.70091694832201,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-01-15",
+      "tipo_cambio": 3.36171428571429,
+      "rin": 95573.74315453,
+      "riesgo_pais": 135,
+      "inflacion": 1.70091694832201,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-01-16",
+      "tipo_cambio": 3.36071428571429,
+      "rin": 95971.85155214,
+      "riesgo_pais": 130,
+      "inflacion": 1.70091694832201,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-01-19",
+      "tipo_cambio": 3.35771428571429,
+      "rin": 96081.73373419,
+      "riesgo_pais": 130,
+      "inflacion": 1.70091694832201,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-01-20",
+      "tipo_cambio": 3.35857142857143,
+      "rin": 96284.81315601,
+      "riesgo_pais": 129,
+      "inflacion": 1.70091694832201,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-01-21",
+      "tipo_cambio": 3.35514285714286,
+      "rin": 96997.16616416,
+      "riesgo_pais": 127,
+      "inflacion": 1.70091694832201,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-01-22",
+      "tipo_cambio": 3.355,
+      "rin": 96876.02805614,
+      "riesgo_pais": 127,
+      "inflacion": 1.70091694832201,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-01-23",
+      "tipo_cambio": 3.35314285714286,
+      "rin": 97423.95691759,
+      "riesgo_pais": 128,
+      "inflacion": 1.70091694832201,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-01-26",
+      "tipo_cambio": 3.35085714285714,
+      "rin": 97563.83377886,
+      "riesgo_pais": 127,
+      "inflacion": 1.70091694832201,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-01-27",
+      "tipo_cambio": 3.348,
+      "rin": 97613.29606964,
+      "riesgo_pais": 126,
+      "inflacion": 1.70091694832201,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-01-28",
+      "tipo_cambio": 3.342,
+      "rin": 96375.24702196,
+      "riesgo_pais": 127,
+      "inflacion": 1.70091694832201,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-01-29",
+      "tipo_cambio": 3.34271428571429,
+      "rin": 95204.02772145,
+      "riesgo_pais": 130,
+      "inflacion": 1.70091694832201,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-01-30",
+      "tipo_cambio": 3.35814285714286,
+      "rin": 95072.12770141,
+      "riesgo_pais": 129,
+      "inflacion": 1.70091694832201,
+      "intervencion": -80
+    },
+    {
+      "fecha": "2026-02-02",
+      "tipo_cambio": 3.36678571428571,
+      "rin": 94600.78974842,
+      "riesgo_pais": 127,
+      "inflacion": 2.21416625767848,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-02-03",
+      "tipo_cambio": 3.36128571428571,
+      "rin": 97153.13182268,
+      "riesgo_pais": 130,
+      "inflacion": 2.21416625767848,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-02-04",
+      "tipo_cambio": 3.36014285714286,
+      "rin": 97354.34770874,
+      "riesgo_pais": 128,
+      "inflacion": 2.21416625767848,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-02-05",
+      "tipo_cambio": 3.36728571428571,
+      "rin": 97114.02907717,
+      "riesgo_pais": 130,
+      "inflacion": 2.21416625767848,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-02-06",
+      "tipo_cambio": 3.35971428571429,
+      "rin": 97240.82384079,
+      "riesgo_pais": 132,
+      "inflacion": 2.21416625767848,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-02-09",
+      "tipo_cambio": 3.35742857142857,
+      "rin": 97982.33239653,
+      "riesgo_pais": 132,
+      "inflacion": 2.21416625767848,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-02-10",
+      "tipo_cambio": 3.35785714285714,
+      "rin": 98157.96444338,
+      "riesgo_pais": 134,
+      "inflacion": 2.21416625767848,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-02-11",
+      "tipo_cambio": 3.35642857142857,
+      "rin": 98158.25697708,
+      "riesgo_pais": 132,
+      "inflacion": 2.21416625767848,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-02-12",
+      "tipo_cambio": 3.35457142857143,
+      "rin": 98435.66884877,
+      "riesgo_pais": 138,
+      "inflacion": 2.21416625767848,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-02-13",
+      "tipo_cambio": 3.353,
+      "rin": 97914.30949495,
+      "riesgo_pais": 138,
+      "inflacion": 2.21416625767848,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-02-16",
+      "tipo_cambio": 3.34885714285714,
+      "rin": 97856.12420476,
+      "riesgo_pais": 138,
+      "inflacion": 2.21416625767848,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-02-17",
+      "tipo_cambio": 3.34642857142857,
+      "rin": 97528.03527457,
+      "riesgo_pais": 137,
+      "inflacion": 2.21416625767848,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-02-18",
+      "tipo_cambio": 3.34914285714286,
+      "rin": 97582.61440945,
+      "riesgo_pais": 136,
+      "inflacion": 2.21416625767848,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-02-19",
+      "tipo_cambio": 3.36364285714286,
+      "rin": 97634.79843355,
+      "riesgo_pais": 138,
+      "inflacion": 2.21416625767848,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-02-20",
+      "tipo_cambio": 3.35914285714286,
+      "rin": 98037.75524373,
+      "riesgo_pais": 136,
+      "inflacion": 2.21416625767848,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-02-23",
+      "tipo_cambio": 3.35835714285714,
+      "rin": 98283.07883607,
+      "riesgo_pais": 139,
+      "inflacion": 2.21416625767848,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-02-24",
+      "tipo_cambio": 3.35914285714286,
+      "rin": 98433.67033222,
+      "riesgo_pais": 138,
+      "inflacion": 2.21416625767848,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-02-25",
+      "tipo_cambio": 3.357,
+      "rin": 97385.15414736,
+      "riesgo_pais": 135,
+      "inflacion": 2.21416625767848,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-02-26",
+      "tipo_cambio": 3.35671428571429,
+      "rin": 96648.21508278,
+      "riesgo_pais": 140,
+      "inflacion": 2.21416625767848,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-02-27",
+      "tipo_cambio": 3.35585714285714,
+      "rin": 97294.87358982,
+      "riesgo_pais": 143,
+      "inflacion": 2.21416625767848,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-03-02",
+      "tipo_cambio": 3.36514285714286,
+      "rin": 97595.74748435,
+      "riesgo_pais": 142,
+      "inflacion": 3.80454581291585,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-03-03",
+      "tipo_cambio": 3.41121428571429,
+      "rin": 99245.43576457,
+      "riesgo_pais": 145,
+      "inflacion": 3.80454581291585,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-03-04",
+      "tipo_cambio": 3.4095,
+      "rin": 99399.58492953,
+      "riesgo_pais": 138,
+      "inflacion": 3.80454581291585,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-03-05",
+      "tipo_cambio": 3.43264285714286,
+      "rin": 98981.37311561,
+      "riesgo_pais": 138,
+      "inflacion": 3.80454581291585,
+      "intervencion": -80
+    },
+    {
+      "fecha": "2026-03-06",
+      "tipo_cambio": 3.483,
+      "rin": 99039.87445235,
+      "riesgo_pais": 140,
+      "inflacion": 3.80454581291585,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-03-09",
+      "tipo_cambio": 3.49178571428571,
+      "rin": 99263.57326957,
+      "riesgo_pais": 143,
+      "inflacion": 3.80454581291585,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-03-10",
+      "tipo_cambio": 3.44221428571429,
+      "rin": 99441.25978,
+      "riesgo_pais": 136,
+      "inflacion": 3.80454581291585,
+      "intervencion": 60
+    },
+    {
+      "fecha": "2026-03-11",
+      "tipo_cambio": 3.42514285714286,
+      "rin": 99349.31075672,
+      "riesgo_pais": 131,
+      "inflacion": 3.80454581291585,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-03-12",
+      "tipo_cambio": 3.44735714285714,
+      "rin": 98626.72632617,
+      "riesgo_pais": 135,
+      "inflacion": 3.80454581291585,
+      "intervencion": -80
+    },
+    {
+      "fecha": "2026-03-13",
+      "tipo_cambio": 3.44728571428571,
+      "rin": 98395.12185893,
+      "riesgo_pais": 138,
+      "inflacion": 3.80454581291585,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-03-16",
+      "tipo_cambio": 3.42592857142857,
+      "rin": 98513.00249168,
+      "riesgo_pais": 141,
+      "inflacion": 3.80454581291585,
+      "intervencion": 60
+    },
+    {
+      "fecha": "2026-03-17",
+      "tipo_cambio": 3.41228571428571,
+      "rin": 98791.88234371,
+      "riesgo_pais": 138,
+      "inflacion": 3.80454581291585,
+      "intervencion": 60
+    },
+    {
+      "fecha": "2026-03-18",
+      "tipo_cambio": 3.4365,
+      "rin": 98585.42734664,
+      "riesgo_pais": 138,
+      "inflacion": 3.80454581291585,
+      "intervencion": -80
+    },
+    {
+      "fecha": "2026-03-19",
+      "tipo_cambio": 3.45514285714286,
+      "rin": 98372.19901078,
+      "riesgo_pais": 142,
+      "inflacion": 3.80454581291585,
+      "intervencion": -80
+    },
+    {
+      "fecha": "2026-03-20",
+      "tipo_cambio": 3.47728571428571,
+      "rin": 98498.30644169,
+      "riesgo_pais": 141,
+      "inflacion": 3.80454581291585,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-03-23",
+      "tipo_cambio": 3.45585714285714,
+      "rin": 98354.53721659,
+      "riesgo_pais": 140,
+      "inflacion": 3.80454581291585,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-03-24",
+      "tipo_cambio": 3.4595,
+      "rin": 97886.42645205,
+      "riesgo_pais": 140,
+      "inflacion": 3.80454581291585,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-03-25",
+      "tipo_cambio": 3.46235714285714,
+      "rin": 97934.26751894,
+      "riesgo_pais": 139,
+      "inflacion": 3.80454581291585,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-03-26",
+      "tipo_cambio": 3.46842857142857,
+      "rin": 97038.53256242,
+      "riesgo_pais": 133,
+      "inflacion": 3.80454581291585,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-03-27",
+      "tipo_cambio": 3.48992857142857,
+      "rin": 96059.21574269,
+      "riesgo_pais": 140,
+      "inflacion": 3.80454581291585,
+      "intervencion": -80
+    },
+    {
+      "fecha": "2026-03-30",
+      "tipo_cambio": 3.49071428571429,
+      "rin": 94975.0014421,
+      "riesgo_pais": 145,
+      "inflacion": 3.80454581291585,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-03-31",
+      "tipo_cambio": 3.49014285714286,
+      "rin": 94716.37835515,
+      "riesgo_pais": 139,
+      "inflacion": 3.80454581291585,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-04-01",
+      "tipo_cambio": 3.459,
+      "rin": 96078.49556245,
+      "riesgo_pais": 137,
+      "inflacion": 4.01414363472928,
+      "intervencion": 60
+    },
+    {
+      "fecha": "2026-04-06",
+      "tipo_cambio": 3.42964285714286,
+      "rin": 95404.00326456,
+      "riesgo_pais": 138,
+      "inflacion": 4.01414363472928,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-04-07",
+      "tipo_cambio": 3.4325,
+      "rin": 98965.4943963,
+      "riesgo_pais": 139,
+      "inflacion": 4.01414363472928,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-04-08",
+      "tipo_cambio": 3.38714285714286,
+      "rin": 99537.28373299,
+      "riesgo_pais": 129,
+      "inflacion": 4.01414363472928,
+      "intervencion": 60
+    },
+    {
+      "fecha": "2026-04-09",
+      "tipo_cambio": 3.38214285714286,
+      "rin": 99876.74199001,
+      "riesgo_pais": 129,
+      "inflacion": 4.01414363472928,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-04-10",
+      "tipo_cambio": 3.388,
+      "rin": 100036.52120028,
+      "riesgo_pais": 125,
+      "inflacion": 4.01414363472928,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-04-13",
+      "tipo_cambio": 3.37092857142857,
+      "rin": 99868.93574997,
+      "riesgo_pais": 125,
+      "inflacion": 4.01414363472928,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-04-14",
+      "tipo_cambio": 3.39185714285714,
+      "rin": 99915.26553942,
+      "riesgo_pais": 123,
+      "inflacion": 4.01414363472928,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-04-15",
+      "tipo_cambio": 3.439,
+      "rin": 100076.28558513,
+      "riesgo_pais": 125,
+      "inflacion": 4.01414363472928,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-04-16",
+      "tipo_cambio": 3.436,
+      "rin": 100227.87581234,
+      "riesgo_pais": 126,
+      "inflacion": 4.01414363472928,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-04-17",
+      "tipo_cambio": 3.43721428571429,
+      "rin": 100520.29022473,
+      "riesgo_pais": 127,
+      "inflacion": 4.01414363472928,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-04-20",
+      "tipo_cambio": 3.43592857142857,
+      "rin": 100832.4709913,
+      "riesgo_pais": 127,
+      "inflacion": 4.01414363472928,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-04-21",
+      "tipo_cambio": 3.43807142857143,
+      "rin": 100949.97780985,
+      "riesgo_pais": 126,
+      "inflacion": 4.01414363472928,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-04-22",
+      "tipo_cambio": 3.44214285714286,
+      "rin": 100320.17796261,
+      "riesgo_pais": 124,
+      "inflacion": 4.01414363472928,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-04-23",
+      "tipo_cambio": 3.46192857142857,
+      "rin": 100207.75948962,
+      "riesgo_pais": 125,
+      "inflacion": 4.01414363472928,
+      "intervencion": -80
+    },
+    {
+      "fecha": "2026-04-24",
+      "tipo_cambio": 3.4775,
+      "rin": 100076.6838029,
+      "riesgo_pais": 127,
+      "inflacion": 4.01414363472928,
+      "intervencion": -80
+    },
+    {
+      "fecha": "2026-04-27",
+      "tipo_cambio": 3.50771428571429,
+      "rin": 98909.80343149,
+      "riesgo_pais": 126,
+      "inflacion": 4.01414363472928,
+      "intervencion": -80
+    },
+    {
+      "fecha": "2026-04-28",
+      "tipo_cambio": 3.51957142857143,
+      "rin": 97626.30659983,
+      "riesgo_pais": 130,
+      "inflacion": 4.01414363472928,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-04-29",
+      "tipo_cambio": 3.53,
+      "rin": 96955.50568822,
+      "riesgo_pais": 122,
+      "inflacion": 4.01414363472928,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-04-30",
+      "tipo_cambio": 3.518,
+      "rin": 97020.32908745,
+      "riesgo_pais": 120,
+      "inflacion": 4.01414363472928,
+      "intervencion": 60
+    },
+    {
+      "fecha": "2026-05-04",
+      "tipo_cambio": 3.51735714285714,
+      "rin": 97483.67117978,
+      "riesgo_pais": 117,
+      "inflacion": 3.90505240621645,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-05-05",
+      "tipo_cambio": 3.49257142857143,
+      "rin": 100073.31626748,
+      "riesgo_pais": 118,
+      "inflacion": 3.90505240621645,
+      "intervencion": 60
+    },
+    {
+      "fecha": "2026-05-06",
+      "tipo_cambio": 3.46757142857143,
+      "rin": 100322.56042143,
+      "riesgo_pais": 118,
+      "inflacion": 3.90505240621645,
+      "intervencion": 60
+    },
+    {
+      "fecha": "2026-05-07",
+      "tipo_cambio": 3.46028571428571,
+      "rin": 99722.5032549,
+      "riesgo_pais": 119,
+      "inflacion": 3.90505240621645,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-05-08",
+      "tipo_cambio": 3.44478571428571,
+      "rin": 100454.19083685,
+      "riesgo_pais": 120,
+      "inflacion": 3.90505240621645,
+      "intervencion": 60
+    },
+    {
+      "fecha": "2026-05-11",
+      "tipo_cambio": 3.43257142857143,
+      "rin": 100731.07998815,
+      "riesgo_pais": 117,
+      "inflacion": 3.90505240621645,
+      "intervencion": 60
+    },
+    {
+      "fecha": "2026-05-12",
+      "tipo_cambio": 3.43278571428571,
+      "rin": 100834.58599595,
+      "riesgo_pais": 114,
+      "inflacion": 3.90505240621645,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-05-13",
+      "tipo_cambio": 3.42371428571429,
+      "rin": 100850.8456337,
+      "riesgo_pais": 115,
+      "inflacion": 3.90505240621645,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-05-14",
+      "tipo_cambio": 3.41742857142857,
+      "rin": 101165.20983503,
+      "riesgo_pais": 110,
+      "inflacion": 3.90505240621645,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-05-15",
+      "tipo_cambio": 3.43428571428571,
+      "rin": 100463.59220509,
+      "riesgo_pais": 111,
+      "inflacion": 3.90505240621645,
+      "intervencion": -80
+    },
+    {
+      "fecha": "2026-05-18",
+      "tipo_cambio": 3.42928571428571,
+      "rin": 100243.12896745,
+      "riesgo_pais": 115,
+      "inflacion": 3.90505240621645,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-05-19",
+      "tipo_cambio": 3.42707142857143,
+      "rin": 100138.42531194,
+      "riesgo_pais": 111,
+      "inflacion": 3.90505240621645,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-05-20",
+      "tipo_cambio": 3.41085714285714,
+      "rin": 100504.27541997,
+      "riesgo_pais": 118,
+      "inflacion": 3.90505240621645,
+      "intervencion": 60
+    },
+    {
+      "fecha": "2026-05-21",
+      "tipo_cambio": 3.41507142857143,
+      "rin": 100594.67247071,
+      "riesgo_pais": 118,
+      "inflacion": 3.90505240621645,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-05-22",
+      "tipo_cambio": 3.41957142857143,
+      "rin": 100091.35254138,
+      "riesgo_pais": 116,
+      "inflacion": 3.90505240621645,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-05-25",
+      "tipo_cambio": 3.413,
+      "rin": 100194.50208663,
+      "riesgo_pais": 116,
+      "inflacion": 3.90505240621645,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-05-26",
+      "tipo_cambio": 3.41971428571429,
+      "rin": 100278.83180148,
+      "riesgo_pais": 116,
+      "inflacion": 3.90505240621645,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-05-27",
+      "tipo_cambio": 3.41864285714286,
+      "rin": 99122.92932852,
+      "riesgo_pais": 115,
+      "inflacion": 3.90505240621645,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-05-28",
+      "tipo_cambio": 3.41421428571429,
+      "rin": 97906.21882683,
+      "riesgo_pais": 112,
+      "inflacion": 3.90505240621645,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-05-29",
+      "tipo_cambio": 3.4145,
+      "rin": 98436.17897559,
+      "riesgo_pais": 113,
+      "inflacion": 3.90505240621645,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-06-01",
+      "tipo_cambio": 3.41878571428571,
+      "rin": 98620.83709272,
+      "riesgo_pais": 113,
+      "inflacion": 3.90505240621645,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-06-02",
+      "tipo_cambio": 3.41007142857143,
+      "rin": 100906.14350555,
+      "riesgo_pais": 111,
+      "inflacion": 3.90505240621645,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-06-03",
+      "tipo_cambio": 3.41978571428571,
+      "rin": 100716.20548365,
+      "riesgo_pais": 109,
+      "inflacion": 3.90505240621645,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-06-04",
+      "tipo_cambio": 3.41471428571429,
+      "rin": 100975.245557,
+      "riesgo_pais": 107,
+      "inflacion": 3.90505240621645,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-06-05",
+      "tipo_cambio": 3.45485714285714,
+      "rin": 100296.38668106,
+      "riesgo_pais": 110,
+      "inflacion": 3.90505240621645,
+      "intervencion": -80
+    },
+    {
+      "fecha": "2026-06-08",
+      "tipo_cambio": 3.48421428571429,
+      "rin": 100089.61011506,
+      "riesgo_pais": 109,
+      "inflacion": 3.90505240621645,
+      "intervencion": -80
+    },
+    {
+      "fecha": "2026-06-09",
+      "tipo_cambio": 3.365,
+      "rin": 100214.38811845,
+      "riesgo_pais": 109,
+      "inflacion": 3.90505240621645,
+      "intervencion": 60
+    },
+    {
+      "fecha": "2026-06-10",
+      "tipo_cambio": 3.41235714285714,
+      "rin": 98612.72196931,
+      "riesgo_pais": 109,
+      "inflacion": 3.90505240621645,
+      "intervencion": -80
+    },
+    {
+      "fecha": "2026-06-11",
+      "tipo_cambio": 3.392,
+      "rin": 98857.92060517,
+      "riesgo_pais": 111,
+      "inflacion": 3.90505240621645,
+      "intervencion": 60
+    },
+    {
+      "fecha": "2025-12-25",
+      "tipo_cambio": 3.392,
+      "rin": 98857.92060517,
+      "riesgo_pais": 134,
+      "inflacion": 1.50879973918667,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2025-12-26",
+      "tipo_cambio": 3.392,
+      "rin": 98857.92060517,
+      "riesgo_pais": 132,
+      "inflacion": 1.50879973918667,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-01-01",
+      "tipo_cambio": 3.392,
+      "rin": 98857.92060517,
+      "riesgo_pais": 135,
+      "inflacion": 1.70091694832201,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-01-02",
+      "tipo_cambio": 3.392,
+      "rin": 98857.92060517,
+      "riesgo_pais": 133,
+      "inflacion": 1.70091694832201,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-04-02",
+      "tipo_cambio": 3.392,
+      "rin": 98857.92060517,
+      "riesgo_pais": 138,
+      "inflacion": 4.01414363472928,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-04-03",
+      "tipo_cambio": 3.392,
+      "rin": 98857.92060517,
+      "riesgo_pais": 137,
+      "inflacion": 4.01414363472928,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-05-01",
+      "tipo_cambio": 3.392,
+      "rin": 98857.92060517,
+      "riesgo_pais": 117,
+      "inflacion": 3.90505240621645,
+      "intervencion": 0
+    }
   ],
   "coyuntura_semanal": {
     "flujos_negativos": [
