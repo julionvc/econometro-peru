@@ -3,10 +3,10 @@
     "fecha_actualizacion": "2026-06-11",
     "fuente": "Banco Central de Reserva del Perú (BCRPData) & Estimaciones Propias",
     "series": {
-      "tipo_cambio": "PD01853AM",
-      "rin": "PD01890AM",
-      "riesgo_pais": "PD04691AM",
-      "inflacion": "PM01211PA"
+      "tipo_cambio": "PD04638PD",
+      "rin": "PD04650MD",
+      "riesgo_pais": "PD04709XD",
+      "inflacion": "PN01273PM"
     }
   },
   "indicadores_actuales": {

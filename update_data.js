@@ -68,23 +68,31 @@ async function main() {
   
   console.log(`Rango de consulta BCRP: Desde ${sixMonthsAgoStr} hasta ${todayStr}`);
 
-  // URL del API multi-serie del BCRP:
-  // PD01853AM: Tipo de Cambio Venta Diario
-  // PD01890AM: RIN Diario
-  // PD04691AM: Riesgo País EMBI+ Diario
-  // PM01211PA: Inflación Interanual Mensual (Variación % 12 meses)
-  const bcrpUrl = `https://estadisticas.bcrp.gob.pe/estadisticas/series/api/PD01853AM-PD01890AM-PD04691AM-PM01211PA/json/${sixMonthsAgoStr}/${todayStr}/esp`;
+  // URL del API multi-serie del BCRP (dividido por frecuencias):
+  // Diarias:
+  // PD04638PD: Tipo de cambio venta diario (interbancario)
+  // PD04650MD: Reservas Internacionales Netas (RIN) diario
+  // PD04709XD: Riesgo país EMBI+ diario
+  const bcrpUrlDaily = `https://estadisticas.bcrp.gob.pe/estadisticas/series/api/PD04638PD-PD04650MD-PD04709XD/json/${sixMonthsAgoStr}/${todayStr}/esp`;
+  
+  // Mensuales:
+  // PN01273PM: Inflación doce meses mensual
+  const bcrpUrlMonthly = `https://estadisticas.bcrp.gob.pe/estadisticas/series/api/PN01273PM/json/${sixMonthsAgoStr}/${todayStr}/esp`;
 
   // 3. Consultar la API del BCRP
-  let bcrpJson;
+  let bcrpDailyJson, bcrpMonthlyJson;
   try {
-    console.log('Consultando API del BCRPData...');
-    bcrpJson = await fetchJson(bcrpUrl);
+    console.log('Consultando API del BCRPData (Series Diarias)...');
+    bcrpDailyJson = await fetchJson(bcrpUrlDaily);
     
-    if (!bcrpJson || !bcrpJson.periods || bcrpJson.periods.length === 0) {
-      throw new Error('La respuesta del BCRP no contiene períodos de datos válidos.');
+    if (!bcrpDailyJson || !bcrpDailyJson.periods || bcrpDailyJson.periods.length === 0) {
+      throw new Error('La respuesta diaria del BCRP no contiene períodos de datos válidos.');
     }
-    console.log(`Petición exitosa: Recibidos ${bcrpJson.periods.length} períodos de datos.`);
+    console.log(`Petición diaria exitosa: Recibidos ${bcrpDailyJson.periods.length} períodos de datos.`);
+    
+    console.log('Consultando API del BCRPData (Series Mensuales)...');
+    bcrpMonthlyJson = await fetchJson(bcrpUrlMonthly);
+    console.log('Petición mensual exitosa.');
   } catch (error) {
     console.error(`Error crítico al consultar BCRP API: ${error.message}`);
     console.log('Manteniendo la caché existente intacta.');
@@ -93,7 +101,35 @@ async function main() {
 
   // 4. Parsear y limpiar datos del BCRP
   try {
-    const bcrpPeriods = bcrpJson.periods;
+    // 4.1 Construir mapa de inflación mensual
+    const inflationMap = {};
+    if (bcrpMonthlyJson && bcrpMonthlyJson.periods) {
+      const months = {
+        'Ene': '01', 'Feb': '02', 'Mar': '03', 'Abr': '04', 'May': '05', 'Jun': '06', 
+        'Jul': '07', 'Ago': '08', 'Sep': '09', 'Oct': '10', 'Nov': '11', 'Dic': '12'
+      };
+      bcrpMonthlyJson.periods.forEach((period) => {
+        // Formato esperado: "Ene.2026" o "Ene.26"
+        const parts = period.name.split('.');
+        if (parts.length === 2) {
+          const monthStr = parts[0];
+          let year = parts[1];
+          if (year.length === 2) {
+            year = '20' + year;
+          }
+          const month = months[monthStr];
+          if (month) {
+            const val = parseFloat(period.values[0]);
+            if (!isNaN(val)) {
+              inflationMap[`${year}-${month}`] = val;
+            }
+          }
+        }
+      });
+    }
+    console.log('Mapa de inflación mensual procesado:', inflationMap);
+
+    const bcrpPeriods = bcrpDailyJson.periods;
     const mappedHistorico = [];
     
     // Inicializar persistencia de datos (carry-over) en caso de celdas "n/d"
@@ -106,6 +142,7 @@ async function main() {
       // Convertir fecha de formato BCRP (dd.Mmm.yy) a ISO (YYYY-MM-DD)
       const dateParts = period.name.split('.');
       let formattedDate = period.name;
+      let yearMonthKey = '';
       if (dateParts.length === 3) {
         const day = dateParts[0].padStart(2, '0');
         const monthStr = dateParts[1];
@@ -116,13 +153,16 @@ async function main() {
         };
         const month = months[monthStr] || '01';
         formattedDate = `${year}-${month}-${day}`;
+        yearMonthKey = `${year}-${month}`;
       }
       
-      // Mapear celdas de acuerdo al orden en el URL multi-serie
+      // Mapear celdas de acuerdo al orden en el URL multi-serie diario
+      // values[0] -> Tipo de Cambio (PD04638PD)
+      // values[1] -> Reservas Internacionales Netas (PD04650MD)
+      // values[2] -> Riesgo País EMBI+ (PD04709XD)
       const rawTC = parseFloat(period.values[0]);
       const rawRIN = parseFloat(period.values[1]);
       const rawEMBI = parseFloat(period.values[2]);
-      const rawInf = parseFloat(period.values[3]);
       
       if (!isNaN(rawTC) && rawTC > 0) lastValidTC = rawTC;
       if (!isNaN(rawRIN) && rawRIN > 0) lastValidRIN = rawRIN;
@@ -131,7 +171,11 @@ async function main() {
       if (!isNaN(rawEMBI) && rawEMBI > 0) {
         lastValidEMBI = rawEMBI < 10 ? Math.round(rawEMBI * 100) : Math.round(rawEMBI);
       }
-      if (!isNaN(rawInf) && rawInf > -100) lastValidInf = rawInf;
+      
+      // Obtener la inflación correspondiente al mes/año de este período diario
+      if (yearMonthKey && inflationMap[yearMonthKey] !== undefined) {
+        lastValidInf = inflationMap[yearMonthKey];
+      }
       
       mappedHistorico.push({
         "fecha": formattedDate,

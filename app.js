@@ -9,10 +9,10 @@ const FALLBACK_DATA = {
     "fecha_actualizacion": "2026-06-11",
     "fuente": "Banco Central de Reserva del Perú (BCRPData) - Modo Fuera de Línea",
     "series": {
-      "tipo_cambio": "PD01853AM",
-      "rin": "PD01890AM",
-      "riesgo_pais": "PD04691AM",
-      "inflacion": "PM01211PA"
+      "tipo_cambio": "PD04638PD",
+      "rin": "PD04650MD",
+      "riesgo_pais": "PD04709XD",
+      "inflacion": "PN01273PM"
     }
   },
   "indicadores_actuales": {
@@ -213,23 +213,26 @@ async function fetchAllData() {
   // Cargar últimos 6 meses para visualización histórica
   const sixMonthsAgo = new Date(Date.now() - 180 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
   
-  // URL Multi-serie del BCRP:
-  // PD01853AM: Tipo de cambio venta diario
-  // PD01890AM: Reservas Internacionales Netas (RIN) diario
-  // PD04691AM: Riesgo país EMBI+ diario
-  // PM01211PA: Inflación doce meses mensual
-  const bcrpUrl = `https://estadisticas.bcrp.gob.pe/estadisticas/series/api/PD01853AM-PD01890AM-PD04691AM-PM01211PA/json/${sixMonthsAgo}/${today}/esp`;
+  // URLs divididas por frecuencia
+  const bcrpUrlDaily = `https://estadisticas.bcrp.gob.pe/estadisticas/series/api/PD04638PD-PD04650MD-PD04709XD/json/${sixMonthsAgo}/${today}/esp`;
+  const bcrpUrlMonthly = `https://estadisticas.bcrp.gob.pe/estadisticas/series/api/PN01273PM/json/${sixMonthsAgo}/${today}/esp`;
+  
+  const proxyUrlDaily = `https://api.allorigins.win/raw?url=${encodeURIComponent(bcrpUrlDaily)}`;
+  const proxyUrlMonthly = `https://api.allorigins.win/raw?url=${encodeURIComponent(bcrpUrlMonthly)}`;
   
   // 1. Intentar consumir API BCRP Real usando un CORS Proxy público
-  const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(bcrpUrl)}`;
-  
   try {
-    console.log('Intentando cargar API del BCRP a través de Proxy CORS...');
-    const response = await fetch(proxyUrl);
-    if (response.ok) {
-      const bcrpData = await response.json();
-      if (bcrpData && bcrpData.periods && bcrpData.periods.length > 0) {
-        state.data = parseBCRPResponse(bcrpData);
+    console.log('Intentando cargar API del BCRP (diario y mensual) a través de Proxy CORS...');
+    const [resDaily, resMonthly] = await Promise.all([
+      fetch(proxyUrlDaily),
+      fetch(proxyUrlMonthly)
+    ]);
+    
+    if (resDaily.ok && resMonthly.ok) {
+      const dailyData = await resDaily.json();
+      const monthlyData = await resMonthly.json();
+      if (dailyData && dailyData.periods && dailyData.periods.length > 0) {
+        state.data = parseBCRPResponse(dailyData, monthlyData);
         state.source = 'api';
         updateStatusIndicator('api');
         console.log('Datos cargados exitosamente de BCRP API via Proxy');
@@ -242,10 +245,15 @@ async function fetchAllData() {
 
   // 2. Intentar consulta directa (por si el cliente tiene CORS deshabilitado o proxy de red propio)
   try {
-    const directResponse = await fetch(bcrpUrl, { method: 'GET', mode: 'cors' });
-    if (directResponse.ok) {
-      const bcrpData = await directResponse.json();
-      state.data = parseBCRPResponse(bcrpData);
+    const [resDaily, resMonthly] = await Promise.all([
+      fetch(bcrpUrlDaily, { method: 'GET', mode: 'cors' }),
+      fetch(bcrpUrlMonthly, { method: 'GET', mode: 'cors' })
+    ]);
+    
+    if (resDaily.ok && resMonthly.ok) {
+      const dailyData = await resDaily.json();
+      const monthlyData = await resMonthly.json();
+      state.data = parseBCRPResponse(dailyData, monthlyData);
       state.source = 'api';
       updateStatusIndicator('api');
       console.log('Datos cargados de BCRP API directamente');
@@ -277,11 +285,35 @@ async function fetchAllData() {
 }
 
 // Parsea y limpia los datos en bruto devueltos de la consulta multi-serie
-function parseBCRPResponse(bcrpJson) {
+function parseBCRPResponse(dailyJson, monthlyJson) {
   const base = JSON.parse(JSON.stringify(FALLBACK_DATA));
   
-  if (bcrpJson && bcrpJson.periods && bcrpJson.periods.length > 0) {
-    const bcrpPeriods = bcrpJson.periods;
+  if (dailyJson && dailyJson.periods && dailyJson.periods.length > 0) {
+    // Construir mapa de inflación mensual
+    const inflationMap = {};
+    if (monthlyJson && monthlyJson.periods) {
+      const months = {'Ene': '01', 'Feb': '02', 'Mar': '03', 'Abr': '04', 'May': '05', 'Jun': '06', 
+                      'Jul': '07', 'Ago': '08', 'Sep': '09', 'Oct': '10', 'Nov': '11', 'Dic': '12'};
+      monthlyJson.periods.forEach((period) => {
+        const parts = period.name.split('.');
+        if (parts.length === 2) {
+          const monthStr = parts[0];
+          let year = parts[1];
+          if (year.length === 2) {
+            year = '20' + year;
+          }
+          const month = months[monthStr];
+          if (month) {
+            const val = parseFloat(period.values[0]);
+            if (!isNaN(val)) {
+              inflationMap[`${year}-${month}`] = val;
+            }
+          }
+        }
+      });
+    }
+
+    const bcrpPeriods = dailyJson.periods;
     const mappedHistorico = [];
     
     // Variables de persistencia (carry-over) para limpiar valores "n/d" o nulos
@@ -294,6 +326,7 @@ function parseBCRPResponse(bcrpJson) {
       // Parsear fecha: dd.mm.yy -> YYYY-MM-DD
       const dateParts = period.name.split('.');
       let formattedDate = period.name;
+      let yearMonthKey = '';
       if (dateParts.length === 3) {
         const day = dateParts[0].padStart(2, '0');
         const monthStr = dateParts[1];
@@ -302,18 +335,17 @@ function parseBCRPResponse(bcrpJson) {
                         'Jul': '07', 'Ago': '08', 'Sep': '09', 'Oct': '10', 'Nov': '11', 'Dic': '12'};
         const month = months[monthStr] || '01';
         formattedDate = `${year}-${month}-${day}`;
+        yearMonthKey = `${year}-${month}`;
       }
       
-      // Mapeo de valores (índices correspondientes al orden en la URL de consulta multi-serie)
-      // values[0] -> PD01853AM (Tipo de Cambio)
-      // values[1] -> PD01890AM (RIN)
-      // values[2] -> PD04691AM (Riesgo País EMBI)
-      // values[3] -> PM01211PA (Inflación)
+      // Mapeo de valores (índices correspondientes al orden en la URL de consulta multi-serie diaria)
+      // values[0] -> PD04638PD (Tipo de Cambio)
+      // values[1] -> PD04650MD (RIN)
+      // values[2] -> PD04709XD (Riesgo País EMBI)
       
       const rawTC = parseFloat(period.values[0]);
       const rawRIN = parseFloat(period.values[1]);
       const rawEMBI = parseFloat(period.values[2]);
-      const rawInf = parseFloat(period.values[3]);
       
       if (!isNaN(rawTC) && rawTC > 0) lastValidTC = rawTC;
       if (!isNaN(rawRIN) && rawRIN > 0) lastValidRIN = rawRIN;
@@ -321,7 +353,11 @@ function parseBCRPResponse(bcrpJson) {
       if (!isNaN(rawEMBI) && rawEMBI > 0) {
         lastValidEMBI = rawEMBI < 10 ? Math.round(rawEMBI * 100) : Math.round(rawEMBI);
       }
-      if (!isNaN(rawInf) && rawInf > -100) lastValidInf = rawInf;
+      
+      // Obtener la inflación correspondiente al mes/año de este período diario
+      if (yearMonthKey && inflationMap[yearMonthKey] !== undefined) {
+        lastValidInf = inflationMap[yearMonthKey];
+      }
       
       mappedHistorico.push({
         "fecha": formattedDate,
