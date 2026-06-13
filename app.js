@@ -316,6 +316,27 @@ function parseBCRPResponse(dailyJson, monthlyJson) {
     }
 
     const bcrpPeriods = dailyJson.periods;
+    
+    // Función auxiliar para parsear fecha BCRP a formato ISO para ordenamiento
+    function bcrpNameToDateStr(bcrpName) {
+      const dateParts = bcrpName.split('.');
+      if (dateParts.length === 3) {
+        const day = dateParts[0].padStart(2, '0');
+        const monthStr = dateParts[1];
+        const year = '20' + dateParts[2];
+        const months = {
+          'Ene': '01', 'Feb': '02', 'Mar': '03', 'Abr': '04', 'May': '05', 'Jun': '06', 
+          'Jul': '07', 'Ago': '08', 'Sep': '09', 'Oct': '10', 'Nov': '11', 'Dic': '12'
+        };
+        const month = months[monthStr] || '01';
+        return `${year}-${month}-${day}`;
+      }
+      return bcrpName;
+    }
+    
+    // Ordenar períodos cronológicamente antes del carry-over
+    bcrpPeriods.sort((a, b) => bcrpNameToDateStr(a.name).localeCompare(bcrpNameToDateStr(b.name)));
+
     const mappedHistorico = [];
     
     // Variables de persistencia (carry-over) para limpiar valores "n/d" o nulos
