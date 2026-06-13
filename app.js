@@ -209,6 +209,24 @@ function updateStatusIndicator(status, message) {
 
 // Carga asíncrona robusta con fallbacks
 async function fetchAllData(cacheBust = false) {
+  // 1. Si no es un refresco forzado, intentar cargar desde caché local para carga instantánea (<100ms)
+  if (!cacheBust) {
+    try {
+      console.log('Cargando datos iniciales desde el caché local (datos_dashboard.json)...');
+      const localResponse = await fetch('datos_dashboard.json');
+      if (localResponse.ok) {
+        const localJson = await localResponse.json();
+        state.data = localJson;
+        state.source = 'local';
+        updateStatusIndicator('local');
+        console.log('Datos cargados exitosamente desde el caché local (Inicio Rápido)');
+        return;
+      }
+    } catch (error) {
+      console.warn('No se pudo cargar el JSON local al inicio. Intentando conectar a la API...', error);
+    }
+  }
+
   const today = new Date().toISOString().slice(0, 10);
   // Cargar últimos 6 meses para visualización histórica
   const sixMonthsAgo = new Date(Date.now() - 180 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
@@ -221,7 +239,7 @@ async function fetchAllData(cacheBust = false) {
   const proxyUrlDaily = `https://api.allorigins.win/raw?url=${encodeURIComponent(bcrpUrlDaily)}${buster}`;
   const proxyUrlMonthly = `https://api.allorigins.win/raw?url=${encodeURIComponent(bcrpUrlMonthly)}${buster}`;
   
-  // 1. Intentar consumir API BCRP Real usando un CORS Proxy público
+  // 2. Intentar consumir API BCRP Real usando un CORS Proxy público
   try {
     console.log('Intentando cargar API del BCRP (diario y mensual) a través de Proxy CORS...');
     const [resDaily, resMonthly] = await Promise.all([
@@ -244,7 +262,7 @@ async function fetchAllData(cacheBust = false) {
     console.warn('Fallo en el Proxy CORS para BCRP API. Intentando consulta directa...', error);
   }
 
-  // 2. Intentar consulta directa (por si el cliente tiene CORS deshabilitado o proxy de red propio)
+  // 3. Intentar consulta directa (por si el cliente tiene CORS deshabilitado o proxy de red propio)
   try {
     const [resDaily, resMonthly] = await Promise.all([
       fetch(bcrpUrlDaily, { method: 'GET', mode: 'cors' }),
@@ -264,7 +282,7 @@ async function fetchAllData(cacheBust = false) {
     console.warn('Consulta directa al BCRP bloqueada. Intentando cargar caché local (datos_dashboard.json)...', error);
   }
 
-  // 3. Intentar cargar archivo JSON local (datos_dashboard.json)
+  // 4. Intentar cargar archivo JSON local (datos_dashboard.json)
   try {
     const jsonBuster = cacheBust ? `?t=${Date.now()}` : '';
     const localResponse = await fetch(`datos_dashboard.json${jsonBuster}`);
@@ -280,7 +298,7 @@ async function fetchAllData(cacheBust = false) {
     console.warn('No se pudo cargar el JSON local. Activando Fallback fuera de línea.', error);
   }
 
-  // 4. Activar Fallback incorporado en JS (Offline)
+  // 5. Activar Fallback incorporado en JS (Offline)
   state.data = JSON.parse(JSON.stringify(FALLBACK_DATA));
   state.source = 'offline';
   updateStatusIndicator('offline');
@@ -817,10 +835,6 @@ async function initInteractiveMap() {
         isDetailed = false;
       }
       
-      tooltip.style.opacity = '1';
-      tooltip.style.left = `${event.pageX + 15}px`;
-      tooltip.style.top = `${event.pageY + 15}px`;
-      
       tooltip.innerHTML = `
         <div class="bg-slate-900 text-white rounded-lg p-3 shadow-xl border border-slate-800 text-xs w-52 leading-relaxed">
           <div class="font-bold border-b border-slate-700 pb-1 mb-1.5 flex items-center justify-between">
@@ -835,6 +849,33 @@ async function initInteractiveMap() {
           <div><span class="text-slate-400">Dinámica:</span> <span class="font-semibold ${isDetailed ? 'text-blue-400' : 'text-slate-400'}">${info.estado}</span></div>
         </div>
       `;
+
+      // Medir dinámicamente las dimensiones del tooltip para evitar colisiones
+      const rect = tooltip.getBoundingClientRect();
+      const tooltipWidth = rect.width || 220;
+      const tooltipHeight = rect.height || 160;
+      const xOffset = 15;
+      const yOffset = 15;
+
+      let x = event.clientX + xOffset;
+      let y = event.clientY + yOffset;
+
+      // Colisión borde derecho del viewport
+      if (x + tooltipWidth > window.innerWidth) {
+        x = event.clientX - tooltipWidth - xOffset;
+      }
+      // Colisión borde inferior del viewport
+      if (y + tooltipHeight > window.innerHeight) {
+        y = event.clientY - tooltipHeight - yOffset;
+      }
+
+      // Evitar salirse de los límites superior/izquierdo absolutos
+      if (x < 10) x = 10;
+      if (y < 10) y = 10;
+
+      tooltip.style.left = `${x}px`;
+      tooltip.style.top = `${y}px`;
+      tooltip.style.opacity = '1';
     })
     .on('mouseleave', function() {
       tooltip.style.opacity = '0';
