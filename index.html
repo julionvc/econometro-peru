@@ -196,8 +196,7 @@
             <g id="map-canvas"></g>
           </svg>
 
-          <!-- Floating Tooltip Container -->
-          <div id="map-tooltip" class="custom-tooltip fixed bg-slate-900 text-white text-2xs p-2 rounded shadow-lg opacity-0 transition-opacity duration-150 pointer-events-none"></div>
+
         </div>
 
         <!-- Card de Detalle Regional del Nodo Seleccionado -->
@@ -511,6 +510,9 @@
       <p><strong>Descargo de responsabilidad (Disclaimer):</strong> La información presentada en este dashboard tiene fines exclusivamente informativos y educativos. Los datos macroeconómicos se obtienen y procesan de forma automatizada a partir de fuentes públicas oficiales (BCRP y organismos multilaterales). Esta plataforma no constituye asesoría financiera, cambiaria o de inversión. Los autores no garantizan la ausencia de errores u omisiones en el origen de los datos, ni se responsabilizan por decisiones comerciales o financieras tomadas con base en la información aquí mostrada.</p>
     </div>
   </footer>
+
+  <!-- Floating Tooltip Container at Root Level (prevents parent overflow/backdrop-filter clipping) -->
+  <div id="map-tooltip" class="custom-tooltip fixed opacity-0 transition-opacity duration-150 pointer-events-none"></div>
 
   <!-- Link App Javascript -->
   <script src="app.js"></script>
