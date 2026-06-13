@@ -165,11 +165,11 @@ document.addEventListener('DOMContentLoaded', () => {
   initApp();
 });
 
-async function initApp() {
+async function initApp(cacheBust = false) {
   updateStatusIndicator('loading', 'Cargando datos...');
   
   // Intentar cargar datos desde API -> JSON Local -> Fallback
-  await fetchAllData();
+  await fetchAllData(cacheBust);
   
   // Inicializar componentes UI
   renderHeaderTermometro();
@@ -208,7 +208,7 @@ function updateStatusIndicator(status, message) {
 }
 
 // Carga asíncrona robusta con fallbacks
-async function fetchAllData() {
+async function fetchAllData(cacheBust = false) {
   const today = new Date().toISOString().slice(0, 10);
   // Cargar últimos 6 meses para visualización histórica
   const sixMonthsAgo = new Date(Date.now() - 180 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
@@ -217,8 +217,9 @@ async function fetchAllData() {
   const bcrpUrlDaily = `https://estadisticas.bcrp.gob.pe/estadisticas/series/api/PD04638PD-PD04650MD-PD04709XD/json/${sixMonthsAgo}/${today}/esp`;
   const bcrpUrlMonthly = `https://estadisticas.bcrp.gob.pe/estadisticas/series/api/PN01273PM/json/${sixMonthsAgo}/${today}/esp`;
   
-  const proxyUrlDaily = `https://api.allorigins.win/raw?url=${encodeURIComponent(bcrpUrlDaily)}`;
-  const proxyUrlMonthly = `https://api.allorigins.win/raw?url=${encodeURIComponent(bcrpUrlMonthly)}`;
+  const buster = cacheBust ? `&t=${Date.now()}` : '';
+  const proxyUrlDaily = `https://api.allorigins.win/raw?url=${encodeURIComponent(bcrpUrlDaily)}${buster}`;
+  const proxyUrlMonthly = `https://api.allorigins.win/raw?url=${encodeURIComponent(bcrpUrlMonthly)}${buster}`;
   
   // 1. Intentar consumir API BCRP Real usando un CORS Proxy público
   try {
@@ -265,7 +266,8 @@ async function fetchAllData() {
 
   // 3. Intentar cargar archivo JSON local (datos_dashboard.json)
   try {
-    const localResponse = await fetch('datos_dashboard.json');
+    const jsonBuster = cacheBust ? `?t=${Date.now()}` : '';
+    const localResponse = await fetch(`datos_dashboard.json${jsonBuster}`);
     if (localResponse.ok) {
       const localJson = await localResponse.json();
       state.data = localJson;
@@ -936,11 +938,21 @@ function initFilterButtons() {
 }
 
 // 6. Evolución e Intervención: Gráfico de Bandas (Chart.js)
+function getChartYLimits(values) {
+  const minVal = Math.min(...values);
+  const maxVal = Math.max(...values);
+  const margin = (maxVal - minVal) * 0.2 || 0.05;
+  const min = parseFloat((minVal - margin).toFixed(3));
+  const max = parseFloat((maxVal + margin).toFixed(3));
+  return { min, max };
+}
+
 function renderBandChart() {
   const ctx = document.getElementById('band-chart').getContext('2d');
   
   // Preparar datos filtrados (Por defecto: Histórico)
   const chartData = getChartDataForFilter(state.currentFilter);
+  const yLimits = getChartYLimits(chartData.values);
   
   // Plugin para pintar el sombreado del Rango Meta/Tolerancia del BCRP de fondo
   const targetRangePlugin = {
@@ -949,10 +961,18 @@ function renderBandChart() {
       const { ctx, chartArea, scales } = chart;
       if (!chartArea) return;
       
-      // Rango de tolerancia cambiaria BCRP definido (3.70 - 3.82)
+      const PenValues = chart.data.datasets[0].data;
+      if (!PenValues || PenValues.length === 0) return;
+      
+      const avgPen = PenValues.reduce((a, b) => a + b, 0) / PenValues.length;
+      
+      // Banda de tolerancia cambiaria dinámica (+/- 1.5% del promedio de flotación reciente)
+      const bottomBand = parseFloat((avgPen * 0.985).toFixed(3));
+      const topBand = parseFloat((avgPen * 1.015).toFixed(3));
+      
       const yScale = scales.y;
-      const topY = yScale.getPixelForValue(3.82);
-      const bottomY = yScale.getPixelForValue(3.70);
+      const topY = yScale.getPixelForValue(topBand);
+      const bottomY = yScale.getPixelForValue(bottomBand);
       
       ctx.save();
       ctx.fillStyle = 'rgba(37, 99, 235, 0.04)'; // Azul muy tenue
@@ -963,7 +983,7 @@ function renderBandChart() {
         bottomY - topY
       );
       
-      // Línea punteada límite superior (3.82)
+      // Línea punteada límite superior
       ctx.strokeStyle = 'rgba(255, 107, 26, 0.25)'; // Naranja tenue
       ctx.lineWidth = 1;
       ctx.setLineDash([4, 4]);
@@ -972,7 +992,7 @@ function renderBandChart() {
       ctx.lineTo(chartArea.right, topY);
       ctx.stroke();
 
-      // Línea punteada límite inferior (3.70)
+      // Línea punteada límite inferior
       ctx.strokeStyle = 'rgba(37, 99, 235, 0.25)'; // Azul tenue
       ctx.beginPath();
       ctx.moveTo(chartArea.left, bottomY);
@@ -1047,8 +1067,8 @@ function renderBandChart() {
           }
         },
         y: {
-          min: 3.65,
-          max: 3.87,
+          min: yLimits.min,
+          max: yLimits.max,
           ticks: {
             stepSize: 0.05,
             font: { family: 'Plus Jakarta Sans', size: 10 },
@@ -1072,12 +1092,17 @@ function updateBandChart() {
   if (!bandChartInstance) return;
   
   const chartData = getChartDataForFilter(state.currentFilter);
+  const yLimits = getChartYLimits(chartData.values);
   
   bandChartInstance.data.labels = chartData.labels;
   bandChartInstance.data.datasets[0].data = chartData.values;
   bandChartInstance.data.datasets[0].pointBackgroundColor = chartData.pointColors;
   bandChartInstance.data.datasets[0].pointBorderColor = chartData.pointBorderColors;
   bandChartInstance.data.datasets[0].pointRadius = chartData.pointRadii;
+  
+  // Actualizar los límites de la escala Y dinámicamente
+  bandChartInstance.options.scales.y.min = yLimits.min;
+  bandChartInstance.options.scales.y.max = yLimits.max;
   
   bandChartInstance.update();
 }
@@ -1137,5 +1162,24 @@ function getChartDataForFilter(filter) {
 // 7. Función Global para Refrescar Resultados
 window.refreshData = async function() {
   console.log('Solicitud de refresco de datos recibida...');
-  await initApp();
+  const btnIcon = document.querySelector('header button i.fa-arrows-rotate');
+  if (btnIcon) {
+    btnIcon.classList.add('animate-spin');
+  }
+  
+  // Mostrar recarga visual en el badge
+  updateStatusIndicator('loading', 'Recargando...');
+  
+  // Breve retardo para dar feedback de red
+  await new Promise(resolve => setTimeout(resolve, 800));
+  
+  try {
+    await initApp(true); // Pasar cacheBust = true
+  } catch (err) {
+    console.error('Error al recargar datos:', err);
+  } finally {
+    if (btnIcon) {
+      btnIcon.classList.remove('animate-spin');
+    }
+  }
 };
