@@ -12,9 +12,9 @@
   "indicadores_actuales": {
     "tipo_cambio": {
       "valor": 3.392,
-      "cambio_porcentaje": 0,
+      "cambio_porcentaje": -0.6,
       "tendencia": "estable",
-      "fecha": "2026-05-01"
+      "fecha": "2026-06-11"
     },
     "inflacion": {
       "valor": 3.90505240621645,
@@ -35,7 +35,7 @@
       "fecha": "2026-05"
     },
     "riesgo_pais": {
-      "valor": 117,
+      "valor": 111,
       "cambio_bps": -4,
       "promedio_latam": 320,
       "fecha": "2026-06-11"
@@ -107,6 +107,22 @@
       "intervencion": 0
     },
     {
+      "fecha": "2025-12-25",
+      "tipo_cambio": 3.365,
+      "rin": 91238.57508556,
+      "riesgo_pais": 134,
+      "inflacion": 1.50879973918667,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2025-12-26",
+      "tipo_cambio": 3.365,
+      "rin": 91238.57508556,
+      "riesgo_pais": 132,
+      "inflacion": 1.50879973918667,
+      "intervencion": 0
+    },
+    {
       "fecha": "2025-12-29",
       "tipo_cambio": 3.367,
       "rin": 89665.10912947,
@@ -128,6 +144,22 @@
       "rin": 90214.4842999,
       "riesgo_pais": 135,
       "inflacion": 1.50879973918667,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-01-01",
+      "tipo_cambio": 3.3636,
+      "rin": 90214.4842999,
+      "riesgo_pais": 135,
+      "inflacion": 1.70091694832201,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-01-02",
+      "tipo_cambio": 3.3636,
+      "rin": 90214.4842999,
+      "riesgo_pais": 133,
+      "inflacion": 1.70091694832201,
       "intervencion": 0
     },
     {
@@ -635,6 +667,22 @@
       "intervencion": 60
     },
     {
+      "fecha": "2026-04-02",
+      "tipo_cambio": 3.459,
+      "rin": 96078.49556245,
+      "riesgo_pais": 138,
+      "inflacion": 4.01414363472928,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-04-03",
+      "tipo_cambio": 3.459,
+      "rin": 96078.49556245,
+      "riesgo_pais": 137,
+      "inflacion": 4.01414363472928,
+      "intervencion": 0
+    },
+    {
       "fecha": "2026-04-06",
       "tipo_cambio": 3.42964285714286,
       "rin": 95404.00326456,
@@ -785,6 +833,14 @@
       "riesgo_pais": 120,
       "inflacion": 4.01414363472928,
       "intervencion": 60
+    },
+    {
+      "fecha": "2026-05-01",
+      "tipo_cambio": 3.518,
+      "rin": 97020.32908745,
+      "riesgo_pais": 117,
+      "inflacion": 3.90505240621645,
+      "intervencion": 0
     },
     {
       "fecha": "2026-05-04",
@@ -1017,62 +1073,6 @@
       "riesgo_pais": 111,
       "inflacion": 3.90505240621645,
       "intervencion": 60
-    },
-    {
-      "fecha": "2025-12-25",
-      "tipo_cambio": 3.392,
-      "rin": 98857.92060517,
-      "riesgo_pais": 134,
-      "inflacion": 1.50879973918667,
-      "intervencion": 0
-    },
-    {
-      "fecha": "2025-12-26",
-      "tipo_cambio": 3.392,
-      "rin": 98857.92060517,
-      "riesgo_pais": 132,
-      "inflacion": 1.50879973918667,
-      "intervencion": 0
-    },
-    {
-      "fecha": "2026-01-01",
-      "tipo_cambio": 3.392,
-      "rin": 98857.92060517,
-      "riesgo_pais": 135,
-      "inflacion": 1.70091694832201,
-      "intervencion": 0
-    },
-    {
-      "fecha": "2026-01-02",
-      "tipo_cambio": 3.392,
-      "rin": 98857.92060517,
-      "riesgo_pais": 133,
-      "inflacion": 1.70091694832201,
-      "intervencion": 0
-    },
-    {
-      "fecha": "2026-04-02",
-      "tipo_cambio": 3.392,
-      "rin": 98857.92060517,
-      "riesgo_pais": 138,
-      "inflacion": 4.01414363472928,
-      "intervencion": 0
-    },
-    {
-      "fecha": "2026-04-03",
-      "tipo_cambio": 3.392,
-      "rin": 98857.92060517,
-      "riesgo_pais": 137,
-      "inflacion": 4.01414363472928,
-      "intervencion": 0
-    },
-    {
-      "fecha": "2026-05-01",
-      "tipo_cambio": 3.392,
-      "rin": 98857.92060517,
-      "riesgo_pais": 117,
-      "inflacion": 3.90505240621645,
-      "intervencion": 0
     }
   ],
   "coyuntura_semanal": {
