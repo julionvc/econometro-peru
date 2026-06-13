@@ -152,7 +152,7 @@ const FALLBACK_DATA = {
 // Configuración de Estado
 let state = {
   data: null,
-  currentFilter: 'hoy', // 'hoy' | 'semana' | 'mes' | 'historico'
+  currentFilter: 'mes', // 'hoy' | 'semana' | 'mes' | 'historico'
   activeRegion: 'PE-LMA',
   source: 'offline' // 'api' | 'local' | 'offline'
 };

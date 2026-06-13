@@ -111,9 +111,9 @@ h1, h2, h3, h4, .font-display {
 }
 
 .pill-button.active {
-  background-color: var(--color-navy);
-  color: #ffffff;
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+  background-color: var(--color-blue) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25) !important;
 }
 
 /* Grid & Dots decorative elements */
