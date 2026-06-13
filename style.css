@@ -144,6 +144,13 @@ h1, h2, h3, h4, .font-display {
   transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
 }
 
+/* Ocultar tooltip en dispositivos táctiles sin soporte de hover (móviles/tabletas) */
+@media (hover: none) {
+  .custom-tooltip {
+    display: none !important;
+  }
+}
+
 /* Pulse indicator */
 .pulse-green {
   animation: pulse-animation-green 2s infinite;

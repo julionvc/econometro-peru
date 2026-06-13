@@ -164,19 +164,10 @@ let bandChartInstance = null;
 document.addEventListener('DOMContentLoaded', () => {
   initApp();
 
-  // Ocultar tooltip al hacer scroll (evita que quede flotando en móviles y desktops al mover la página)
+  // Ocultar tooltip al hacer scroll (evita que quede flotando en desktops al mover la página)
   window.addEventListener('scroll', () => {
     const tooltip = document.getElementById('map-tooltip');
     if (tooltip) {
-      tooltip.style.opacity = '0';
-    }
-  }, { passive: true });
-
-  // Ocultar tooltip al tocar fuera del mapa o del tooltip (dispositivos táctiles)
-  document.addEventListener('touchstart', (e) => {
-    const tooltip = document.getElementById('map-tooltip');
-    const mapSvg = document.getElementById('peru-map-svg');
-    if (tooltip && mapSvg && !mapSvg.contains(e.target) && !tooltip.contains(e.target)) {
       tooltip.style.opacity = '0';
     }
   }, { passive: true });
@@ -898,9 +889,6 @@ async function initInteractiveMap() {
       tooltip.style.opacity = '0';
     })
     .on('click', function(event, d) {
-      // Ocultar tooltip inmediatamente tras hacer click/tap (evita redundancia en móviles)
-      tooltip.style.opacity = '0';
-
       const nomb = d.properties.NOMBDEP;
       const code = DEPT_NAME_TO_CODE[nomb];
       
