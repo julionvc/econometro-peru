@@ -179,6 +179,12 @@ async function initApp(cacheBust = false) {
   // Intentar cargar datos desde API -> JSON Local -> Fallback
   await fetchAllData(cacheBust);
   
+  // Actualizar fecha de actualización dinámica en el header
+  const updateDateEl = document.getElementById('update-date');
+  if (updateDateEl && state.data && state.data.metadata && state.data.metadata.fecha_actualizacion) {
+    updateDateEl.innerText = `Actualizado: ${state.data.metadata.fecha_actualizacion}`;
+  }
+
   // Inicializar componentes UI
   renderHeaderTermometro();
   renderEstructuraSolidez();
