@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "fecha_actualizacion": "2026-06-20",
+    "fecha_actualizacion": "2026-06-21",
     "fuente": "Banco Central de Reserva del Perú (BCRPData) - Actualizado Automático",
     "series": {
       "tipo_cambio": "PD04638PD",
@@ -42,14 +42,6 @@
     }
   },
   "historico": [
-    {
-      "fecha": "2025-12-22",
-      "tipo_cambio": 3.36614285714286,
-      "rin": 93215.9294323,
-      "riesgo_pais": 128,
-      "inflacion": 1.50879973918667,
-      "intervencion": 0
-    },
     {
       "fecha": "2025-12-23",
       "tipo_cambio": 3.367,
