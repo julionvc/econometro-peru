@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "fecha_actualizacion": "2026-07-08",
+    "fecha_actualizacion": "2026-07-09",
     "fuente": "Banco Central de Reserva del Perú (BCRPData) - Actualizado Automático",
     "series": {
       "tipo_cambio": "PD04638PD",
@@ -11,10 +11,10 @@
   },
   "indicadores_actuales": {
     "tipo_cambio": {
-      "valor": 3.39828571428571,
+      "valor": 3.40614285714286,
       "cambio_porcentaje": 0,
       "tendencia": "estable",
-      "fecha": "2026-07-08"
+      "fecha": "2026-07-09"
     },
     "inflacion": {
       "valor": 4.00890965651766,
@@ -23,7 +23,7 @@
       "fecha": "2026-05"
     },
     "rin": {
-      "valor": 100187.56148987,
+      "valor": 99699.90045836,
       "cambio_anual_m": 1280,
       "meta_seguridad_pbi": 27.5,
       "fecha": "2026-06-10"
@@ -35,21 +35,13 @@
       "fecha": "2026-05"
     },
     "riesgo_pais": {
-      "valor": 110,
+      "valor": 107,
       "cambio_bps": -4,
       "promedio_latam": 320,
       "fecha": "2026-06-11"
     }
   },
   "historico": [
-    {
-      "fecha": "2026-01-09",
-      "tipo_cambio": 3.36171428571429,
-      "rin": 94720.5548694,
-      "riesgo_pais": 138,
-      "inflacion": 1.70091694832201,
-      "intervencion": 0
-    },
     {
       "fecha": "2026-01-12",
       "tipo_cambio": 3.36057142857143,
@@ -1052,25 +1044,33 @@
     },
     {
       "fecha": "2026-07-06",
-      "tipo_cambio": 3.39828571428571,
-      "rin": 100187.56148987,
-      "riesgo_pais": 110,
+      "tipo_cambio": 3.406,
+      "rin": 99818.62796389,
+      "riesgo_pais": 112,
       "inflacion": 4.00890965651766,
       "intervencion": 0
     },
     {
       "fecha": "2026-07-07",
-      "tipo_cambio": 3.39828571428571,
-      "rin": 100187.56148987,
-      "riesgo_pais": 110,
+      "tipo_cambio": 3.40614285714286,
+      "rin": 99699.90045836,
+      "riesgo_pais": 107,
       "inflacion": 4.00890965651766,
       "intervencion": 0
     },
     {
       "fecha": "2026-07-08",
-      "tipo_cambio": 3.39828571428571,
-      "rin": 100187.56148987,
-      "riesgo_pais": 110,
+      "tipo_cambio": 3.40614285714286,
+      "rin": 99699.90045836,
+      "riesgo_pais": 107,
+      "inflacion": 4.00890965651766,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-07-09",
+      "tipo_cambio": 3.40614285714286,
+      "rin": 99699.90045836,
+      "riesgo_pais": 107,
       "inflacion": 4.00890965651766,
       "intervencion": 0
     }
