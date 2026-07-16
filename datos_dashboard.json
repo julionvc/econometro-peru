@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "fecha_actualizacion": "2026-07-15",
+    "fecha_actualizacion": "2026-07-16",
     "fuente": "Banco Central de Reserva del Perú (BCRPData) - Actualizado Automático",
     "series": {
       "tipo_cambio": "PD04638PD",
@@ -11,10 +11,10 @@
   },
   "indicadores_actuales": {
     "tipo_cambio": {
-      "valor": 3.40271428571429,
+      "valor": 3.393,
       "cambio_porcentaje": 0,
       "tendencia": "estable",
-      "fecha": "2026-07-15"
+      "fecha": "2026-07-16"
     },
     "inflacion": {
       "valor": 4.00890965651766,
@@ -23,7 +23,7 @@
       "fecha": "2026-05"
     },
     "rin": {
-      "valor": 99619.18931562,
+      "valor": 99489.34357277,
       "cambio_anual_m": 1280,
       "meta_seguridad_pbi": 27.5,
       "fecha": "2026-06-10"
@@ -35,21 +35,13 @@
       "fecha": "2026-05"
     },
     "riesgo_pais": {
-      "valor": 103,
+      "valor": 104,
       "cambio_bps": -4,
       "promedio_latam": 320,
       "fecha": "2026-06-11"
     }
   },
   "historico": [
-    {
-      "fecha": "2026-01-16",
-      "tipo_cambio": 3.36071428571429,
-      "rin": 95971.85155214,
-      "riesgo_pais": 130,
-      "inflacion": 1.70091694832201,
-      "intervencion": 0
-    },
     {
       "fecha": "2026-01-19",
       "tipo_cambio": 3.35771428571429,
@@ -1060,17 +1052,25 @@
     },
     {
       "fecha": "2026-07-14",
-      "tipo_cambio": 3.40271428571429,
-      "rin": 99619.18931562,
-      "riesgo_pais": 103,
+      "tipo_cambio": 3.393,
+      "rin": 99489.34357277,
+      "riesgo_pais": 104,
       "inflacion": 4.00890965651766,
       "intervencion": 0
     },
     {
       "fecha": "2026-07-15",
-      "tipo_cambio": 3.40271428571429,
-      "rin": 99619.18931562,
-      "riesgo_pais": 103,
+      "tipo_cambio": 3.393,
+      "rin": 99489.34357277,
+      "riesgo_pais": 104,
+      "inflacion": 4.00890965651766,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-07-16",
+      "tipo_cambio": 3.393,
+      "rin": 99489.34357277,
+      "riesgo_pais": 104,
       "inflacion": 4.00890965651766,
       "intervencion": 0
     }
