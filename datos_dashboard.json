@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "fecha_actualizacion": "2026-07-27",
+    "fecha_actualizacion": "2026-07-28",
     "fuente": "Banco Central de Reserva del Perú (BCRPData) - Actualizado Automático",
     "series": {
       "tipo_cambio": "PD04638PD",
@@ -14,7 +14,7 @@
       "valor": 3.40114285714286,
       "cambio_porcentaje": 0,
       "tendencia": "estable",
-      "fecha": "2026-07-27"
+      "fecha": "2026-07-28"
     },
     "inflacion": {
       "valor": 4.00890965651766,
@@ -42,14 +42,6 @@
     }
   },
   "historico": [
-    {
-      "fecha": "2026-01-28",
-      "tipo_cambio": 3.342,
-      "rin": 96375.24702196,
-      "riesgo_pais": 127,
-      "inflacion": 1.70091694832201,
-      "intervencion": 0
-    },
     {
       "fecha": "2026-01-29",
       "tipo_cambio": 3.34271428571429,
@@ -1068,6 +1060,14 @@
     },
     {
       "fecha": "2026-07-27",
+      "tipo_cambio": 3.40114285714286,
+      "rin": 97422,
+      "riesgo_pais": 108,
+      "inflacion": 4.00890965651766,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-07-28",
       "tipo_cambio": 3.40114285714286,
       "rin": 97422,
       "riesgo_pais": 108,
