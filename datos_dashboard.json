@@ -11,7 +11,7 @@
   },
   "indicadores_actuales": {
     "tipo_cambio": {
-      "valor": 3.39014285714286,
+      "valor": 3.38914285714286,
       "cambio_porcentaje": 0,
       "tendencia": "estable",
       "fecha": "2026-08-07"
@@ -23,7 +23,7 @@
       "fecha": "2026-05"
     },
     "rin": {
-      "valor": 98853.21328976,
+      "valor": 98667.62295313,
       "cambio_anual_m": 1280,
       "meta_seguridad_pbi": 27.5,
       "fecha": "2026-06-10"
@@ -1060,24 +1060,24 @@
     },
     {
       "fecha": "2026-08-05",
-      "tipo_cambio": 3.39014285714286,
-      "rin": 98853.21328976,
+      "tipo_cambio": 3.38914285714286,
+      "rin": 98667.62295313,
       "riesgo_pais": 111,
       "inflacion": 4.06515256208199,
       "intervencion": 0
     },
     {
       "fecha": "2026-08-06",
-      "tipo_cambio": 3.39014285714286,
-      "rin": 98853.21328976,
+      "tipo_cambio": 3.38914285714286,
+      "rin": 98667.62295313,
       "riesgo_pais": 111,
       "inflacion": 4.06515256208199,
       "intervencion": 0
     },
     {
       "fecha": "2026-08-07",
-      "tipo_cambio": 3.39014285714286,
-      "rin": 98853.21328976,
+      "tipo_cambio": 3.38914285714286,
+      "rin": 98667.62295313,
       "riesgo_pais": 111,
       "inflacion": 4.06515256208199,
       "intervencion": 0
