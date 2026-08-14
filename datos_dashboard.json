@@ -11,7 +11,7 @@
   },
   "indicadores_actuales": {
     "tipo_cambio": {
-      "valor": 3.36228571428571,
+      "valor": 3.36485714285714,
       "cambio_porcentaje": 0,
       "tendencia": "estable",
       "fecha": "2026-08-14"
@@ -23,7 +23,7 @@
       "fecha": "2026-05"
     },
     "rin": {
-      "valor": 99639.20577376,
+      "valor": 99542.7316722,
       "cambio_anual_m": 1280,
       "meta_seguridad_pbi": 27.5,
       "fecha": "2026-06-10"
@@ -35,7 +35,7 @@
       "fecha": "2026-05"
     },
     "riesgo_pais": {
-      "valor": 106,
+      "valor": 107,
       "cambio_bps": -4,
       "promedio_latam": 320,
       "fecha": "2026-06-11"
@@ -1068,17 +1068,17 @@
     },
     {
       "fecha": "2026-08-13",
-      "tipo_cambio": 3.36228571428571,
-      "rin": 99639.20577376,
-      "riesgo_pais": 106,
+      "tipo_cambio": 3.36485714285714,
+      "rin": 99542.7316722,
+      "riesgo_pais": 107,
       "inflacion": 4.06515256208199,
       "intervencion": 0
     },
     {
       "fecha": "2026-08-14",
-      "tipo_cambio": 3.36228571428571,
-      "rin": 99639.20577376,
-      "riesgo_pais": 106,
+      "tipo_cambio": 3.36485714285714,
+      "rin": 99542.7316722,
+      "riesgo_pais": 107,
       "inflacion": 4.06515256208199,
       "intervencion": 0
     }
