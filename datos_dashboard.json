@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "fecha_actualizacion": "2026-08-25",
+    "fecha_actualizacion": "2026-08-27",
     "fuente": "Banco Central de Reserva del Perú (BCRPData) - Actualizado Automático",
     "series": {
       "tipo_cambio": "PD04638PD",
@@ -11,10 +11,10 @@
   },
   "indicadores_actuales": {
     "tipo_cambio": {
-      "valor": 3.34714285714286,
+      "valor": 3.34457142857143,
       "cambio_porcentaje": 0,
       "tendencia": "estable",
-      "fecha": "2026-08-25"
+      "fecha": "2026-08-27"
     },
     "inflacion": {
       "valor": 4.06515256208199,
@@ -35,29 +35,13 @@
       "fecha": "2026-05"
     },
     "riesgo_pais": {
-      "valor": 113,
+      "valor": 116,
       "cambio_bps": -4,
       "promedio_latam": 320,
       "fecha": "2026-06-11"
     }
   },
   "historico": [
-    {
-      "fecha": "2026-02-26",
-      "tipo_cambio": 3.35671428571429,
-      "rin": 96648.21508278,
-      "riesgo_pais": 140,
-      "inflacion": 2.21416625767848,
-      "intervencion": 0
-    },
-    {
-      "fecha": "2026-02-27",
-      "tipo_cambio": 3.35585714285714,
-      "rin": 97294.87358982,
-      "riesgo_pais": 143,
-      "inflacion": 2.21416625767848,
-      "intervencion": 0
-    },
     {
       "fecha": "2026-03-02",
       "tipo_cambio": 3.36514285714286,
@@ -1068,9 +1052,25 @@
     },
     {
       "fecha": "2026-08-25",
-      "tipo_cambio": 3.34714285714286,
+      "tipo_cambio": 3.34457142857143,
       "rin": 99091,
-      "riesgo_pais": 113,
+      "riesgo_pais": 116,
+      "inflacion": 4.06515256208199,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-08-26",
+      "tipo_cambio": 3.34457142857143,
+      "rin": 99091,
+      "riesgo_pais": 116,
+      "inflacion": 4.06515256208199,
+      "intervencion": 0
+    },
+    {
+      "fecha": "2026-08-27",
+      "tipo_cambio": 3.34457142857143,
+      "rin": 99091,
+      "riesgo_pais": 116,
       "inflacion": 4.06515256208199,
       "intervencion": 0
     }
