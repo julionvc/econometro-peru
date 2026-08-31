@@ -792,18 +792,38 @@ function renderIndiceFortalezaSol() {
   if (pilarMotorDesc) pilarMotorDesc.innerText = `Spread +${diffTasa}% • Cobre ${(latest.cobre || 657.3).toFixed(1)}`;
 }
 
-// 1.6. Motores de Divisas: Tasas de Interés y Commodities
+// 1.6. Motores de Divisas: Tasas de Interés y Commodities (Sensible al Filtro de Tiempo)
 function renderMotoresDivisas() {
   const data = state.data;
   if (!data || !data.indicadores_actuales) return;
 
   const historico = data.historico;
-  const latest = historico && historico.length > 0 ? historico[historico.length - 1] : {};
-  const prev = historico && historico.length > 1 ? historico[historico.length - 2] : latest;
+  if (!historico || historico.length === 0) return;
+
+  const latest = historico[historico.length - 1];
+  
+  // Encontrar el punto de comparación según el filtro de tiempo activo
+  const filter = state.currentFilter || 'mes';
+  let compIdx = historico.length - 2; // Default hoy
+  let labelSuffix = 'hoy';
+
+  if (filter === 'semana') {
+    compIdx = Math.max(0, historico.length - 7);
+    labelSuffix = 'esta sem.';
+  } else if (filter === 'mes') {
+    compIdx = Math.max(0, historico.length - 22);
+    labelSuffix = 'este mes';
+  } else if (filter === 'historico') {
+    compIdx = 0;
+    labelSuffix = 'histórico';
+  }
+
+  if (compIdx < 0) compIdx = 0;
+  const comp = historico[compIdx];
 
   const tasaBcrp = latest.tasa_bcrp || 4.25;
   const tasaUsd = latest.tasa_usd || 3.75;
-  const diffCarry = (tasaBcrp - tasaUsd).toFixed(2);
+  const diffCarry = parseFloat((tasaBcrp - tasaUsd).toFixed(2));
 
   // Elementos Tasas
   const tasaBcrpEl = document.getElementById('tasa-bcrp-val');
@@ -815,7 +835,7 @@ function renderMotoresDivisas() {
   if (tasaFedEl) tasaFedEl.innerText = `${tasaUsd.toFixed(2)}%`;
   if (carrySpreadBadge) {
     const sign = diffCarry >= 0 ? '+' : '';
-    carrySpreadBadge.innerText = `${sign}${diffCarry}%`;
+    carrySpreadBadge.innerText = `${sign}${diffCarry}% spread`;
     carrySpreadBadge.className = diffCarry >= 0
       ? 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200'
       : 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-orange-50 text-orange-700 border border-orange-200';
@@ -832,14 +852,14 @@ function renderMotoresDivisas() {
   const cobreValEl = document.getElementById('cobre-val');
   const cobreChangeBadge = document.getElementById('cobre-change-badge');
   const cobreVal = latest.cobre || 657.3;
-  const prevCobre = prev.cobre || cobreVal;
-  const cobrePct = prevCobre > 0 ? (((cobreVal - prevCobre) / prevCobre) * 100).toFixed(1) : '0.0';
+  const compCobre = comp.cobre || cobreVal;
+  const cobrePct = compCobre > 0 ? (((cobreVal - compCobre) / compCobre) * 100).toFixed(1) : '0.0';
 
   if (cobreValEl) cobreValEl.innerText = cobreVal.toFixed(1);
   if (cobreChangeBadge) {
-    const sign = cobrePct >= 0 ? '+' : '';
-    cobreChangeBadge.innerText = `${sign}${cobrePct}%`;
-    cobreChangeBadge.className = cobrePct >= 0
+    const sign = parseFloat(cobrePct) >= 0 ? '+' : '';
+    cobreChangeBadge.innerText = `${sign}${cobrePct}% ${labelSuffix}`;
+    cobreChangeBadge.className = parseFloat(cobrePct) >= 0
       ? 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200'
       : 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-orange-50 text-orange-700 border border-orange-200';
   }
@@ -848,14 +868,14 @@ function renderMotoresDivisas() {
   const oroValEl = document.getElementById('oro-val');
   const oroChangeBadge = document.getElementById('oro-change-badge');
   const oroVal = latest.oro || 4599.1;
-  const prevOro = prev.oro || oroVal;
-  const oroPct = prevOro > 0 ? (((oroVal - prevOro) / prevOro) * 100).toFixed(1) : '0.0';
+  const compOro = comp.oro || oroVal;
+  const oroPct = compOro > 0 ? (((oroVal - compOro) / compOro) * 100).toFixed(1) : '0.0';
 
   if (oroValEl) oroValEl.innerText = `$ ${oroVal.toLocaleString('en-US', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}`;
   if (oroChangeBadge) {
-    const sign = oroPct >= 0 ? '+' : '';
-    oroChangeBadge.innerText = `${sign}${oroPct}%`;
-    oroChangeBadge.className = oroPct >= 0
+    const sign = parseFloat(oroPct) >= 0 ? '+' : '';
+    oroChangeBadge.innerText = `${sign}${oroPct}% ${labelSuffix}`;
+    oroChangeBadge.className = parseFloat(oroPct) >= 0
       ? 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200'
       : 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-orange-50 text-orange-700 border border-orange-200';
   }
