@@ -16,11 +16,21 @@ const FALLBACK_DATA = {
     }
   },
   "indicadores_actuales": {
-    "tipo_cambio": { "valor": 3.742, "cambio_porcentaje": -0.15, "tendencia": "estable", "fecha": "2026-06-11" },
-    "inflacion": { "valor": 2.42, "cambio_porcentaje": 0.05, "tendencia": "dentro_rango", "fecha": "2026-05" },
-    "rin": { "valor": 75420, "cambio_anual_m": 1280, "meta_seguridad_pbi": 27.5, "fecha": "2026-06-10" },
+    "tipo_cambio": { "valor": 3.345, "cambio_porcentaje": 0.0, "tendencia": "estable", "fecha": "2026-08-31" },
+    "inflacion": { "valor": 4.07, "cambio_porcentaje": 0.05, "tendencia": "monitoreo", "fecha": "2026-08-31" },
+    "rin": { "valor": 98255, "cambio_anual_m": 1280, "meta_seguridad_pbi": 27.5, "fecha": "2026-08-31" },
     "deuda_publica": { "valor": 32.8, "limite_prudencial": 38.0, "tendencia": "sostenible", "fecha": "2026-05" },
-    "riesgo_pais": { "valor": 134, "cambio_bps": -4, "promedio_latam": 320, "fecha": "2026-06-11" }
+    "riesgo_pais": { "valor": 109, "cambio_bps": 0, "promedio_latam": 320, "fecha": "2026-08-31" },
+    "tasa_interes_bcrp": { "valor": 4.25, "tasa_usd": 3.75, "diferencial_carry": 0.50, "descripcion": "Premio positivo por mantener Soles (Carry Trade)", "fecha": "2026-08-31" },
+    "cobre_precio": { "valor": 657.3, "unidad": "cUS$/lb", "cambio_porcentaje": 0.0, "fecha": "2026-08-31" },
+    "oro_precio": { "valor": 4599.1, "unidad": "US$/oz", "cambio_porcentaje": 0.0, "fecha": "2026-08-31" },
+    "indice_fortaleza": {
+      "score": 91,
+      "estado": "Solidez Extrema",
+      "color": "emerald",
+      "pilares": { "reservas_pts": 30, "inflacion_pts": 21, "riesgo_soberano_pts": 25, "politica_commodities_pts": 15 },
+      "fecha": "2026-08-31"
+    }
   },
   "historico": [
     {"fecha": "2026-01-02", "tipo_cambio": 3.712, "rin": 74120, "riesgo_pais": 142, "inflacion": 2.89, "intervencion": 0},
@@ -187,6 +197,8 @@ async function initApp(cacheBust = false) {
 
   // Inicializar componentes UI
   renderHeaderTermometro();
+  renderIndiceFortalezaSol();
+  renderMotoresDivisas();
   renderEstructuraSolidez();
   renderCoyunturaSemanal();
   await initInteractiveMap();
@@ -290,8 +302,8 @@ async function fetchAllData(cacheBust = false) {
   // Cargar últimos 6 meses para visualización histórica
   const sixMonthsAgo = new Date(Date.now() - 180 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
   
-  // URLs divididas por frecuencia
-  const bcrpUrlDaily = `https://estadisticas.bcrp.gob.pe/estadisticas/series/api/PD04638PD-PD04650MD-PD04709XD/json/${sixMonthsAgo}/${today}/esp`;
+  // URLs divididas por frecuencia (7 series consolidadas):
+  const bcrpUrlDaily = `https://estadisticas.bcrp.gob.pe/estadisticas/series/api/PD04638PD-PD04650MD-PD04692MD-PD04693MD-PD04701XD-PD04704XD-PD04709XD/json/${sixMonthsAgo}/${today}/esp`;
   const bcrpUrlMonthly = `https://estadisticas.bcrp.gob.pe/estadisticas/series/api/PN01273PM/json/${sixMonthsAgo}/${today}/esp`;
   
   const buster = cacheBust ? `&t=${Date.now()}` : '';
@@ -300,7 +312,7 @@ async function fetchAllData(cacheBust = false) {
   
   // 2. Intentar consumir API BCRP Real usando un CORS Proxy público
   try {
-    console.log('Intentando cargar API del BCRP (diario y mensual) a través de Proxy CORS...');
+    console.log('Intentando cargar API del BCRP (7 series diarias y mensual) a través de Proxy CORS...');
     const [resDaily, resMonthly] = await Promise.all([
       fetch(proxyUrlDaily),
       fetch(proxyUrlMonthly)
@@ -421,10 +433,14 @@ function parseBCRPResponse(dailyJson, monthlyJson) {
     const mappedHistorico = [];
     
     // Variables de persistencia (carry-over) para limpiar valores "n/d" o nulos
-    let lastValidTC = base.indicadores_actuales.tipo_cambio.valor;
-    let lastValidRIN = base.indicadores_actuales.rin.valor;
-    let lastValidEMBI = base.indicadores_actuales.riesgo_pais.valor;
-    let lastValidInf = base.indicadores_actuales.inflacion.valor;
+    let lastValidTC = (base.indicadores_actuales.tipo_cambio && base.indicadores_actuales.tipo_cambio.valor) || 3.35;
+    let lastValidRIN = (base.indicadores_actuales.rin && base.indicadores_actuales.rin.valor) || 98000;
+    let lastValidTasaBCRP = (base.indicadores_actuales.tasa_interes_bcrp && base.indicadores_actuales.tasa_interes_bcrp.valor) || 4.25;
+    let lastValidTasaUSD = (base.indicadores_actuales.tasa_interes_fed && base.indicadores_actuales.tasa_interes_fed.valor) || 3.75;
+    let lastValidCobre = (base.indicadores_actuales.cobre_precio && base.indicadores_actuales.cobre_precio.valor) || 640;
+    let lastValidOro = (base.indicadores_actuales.oro_precio && base.indicadores_actuales.oro_precio.valor) || 4100;
+    let lastValidEMBI = (base.indicadores_actuales.riesgo_pais && base.indicadores_actuales.riesgo_pais.valor) || 110;
+    let lastValidInf = (base.indicadores_actuales.inflacion && base.indicadores_actuales.inflacion.valor) || 4.0;
     
     bcrpPeriods.forEach((period) => {
       // Parsear fecha: dd.mm.yy -> YYYY-MM-DD
@@ -442,17 +458,30 @@ function parseBCRPResponse(dailyJson, monthlyJson) {
         yearMonthKey = `${year}-${month}`;
       }
       
-      // Mapeo de valores (índices correspondientes al orden en la URL de consulta multi-serie diaria)
+      // Mapeo de valores (índices correspondientes al orden en la URL de consulta multi-serie diaria de 7 series)
       // values[0] -> PD04638PD (Tipo de Cambio)
       // values[1] -> PD04650MD (RIN)
-      // values[2] -> PD04709XD (Riesgo País EMBI)
+      // values[2] -> PD04692MD (Tasa Interbancaria S/)
+      // values[3] -> PD04693MD (Tasa Interbancaria US$)
+      // values[4] -> PD04701XD (Cobre)
+      // values[5] -> PD04704XD (Oro)
+      // values[6] -> PD04709XD (Riesgo País EMBI)
       
       const rawTC = parseFloat(period.values[0]);
       const rawRIN = parseFloat(period.values[1]);
-      const rawEMBI = parseFloat(period.values[2]);
+      const rawTasaBCRP = parseFloat(period.values[2]);
+      const rawTasaUSD = parseFloat(period.values[3]);
+      const rawCobre = parseFloat(period.values[4]);
+      const rawOro = parseFloat(period.values[5]);
+      const rawEMBI = parseFloat(period.values[6]);
       
       if (!isNaN(rawTC) && rawTC > 0) lastValidTC = rawTC;
       if (!isNaN(rawRIN) && rawRIN > 0) lastValidRIN = rawRIN;
+      if (!isNaN(rawTasaBCRP) && rawTasaBCRP > 0) lastValidTasaBCRP = rawTasaBCRP;
+      if (!isNaN(rawTasaUSD) && rawTasaUSD > 0) lastValidTasaUSD = rawTasaUSD;
+      if (!isNaN(rawCobre) && rawCobre > 0) lastValidCobre = parseFloat(rawCobre.toFixed(1));
+      if (!isNaN(rawOro) && rawOro > 0) lastValidOro = parseFloat(rawOro.toFixed(1));
+      
       // El EMBI a veces viene como porcentaje en decimales (ej. 1.34) o entero. Mapear a bps.
       if (!isNaN(rawEMBI) && rawEMBI > 0) {
         lastValidEMBI = rawEMBI < 10 ? Math.round(rawEMBI * 100) : Math.round(rawEMBI);
@@ -467,6 +496,10 @@ function parseBCRPResponse(dailyJson, monthlyJson) {
         "fecha": formattedDate,
         "tipo_cambio": lastValidTC,
         "rin": lastValidRIN,
+        "tasa_bcrp": lastValidTasaBCRP,
+        "tasa_usd": lastValidTasaUSD,
+        "cobre": lastValidCobre,
+        "oro": lastValidOro,
         "riesgo_pais": lastValidEMBI,
         "inflacion": lastValidInf,
         "intervencion": 0 // Se estimará dinámicamente
@@ -492,18 +525,105 @@ function parseBCRPResponse(dailyJson, monthlyJson) {
       
       // Actualizar indicadores actuales al último registro disponible
       const latest = mappedHistorico[mappedHistorico.length - 1];
-      base.indicadores_actuales.tipo_cambio.valor = latest.tipo_cambio;
-      base.indicadores_actuales.tipo_cambio.fecha = latest.fecha;
-      base.indicadores_actuales.rin.valor = latest.rin;
-      base.indicadores_actuales.riesgo_pais.valor = latest.riesgo_pais;
-      base.indicadores_actuales.inflacion.valor = latest.inflacion;
-      
-      // Calcular variación de tipo de cambio diaria
-      if (mappedHistorico.length > 1) {
-        const prev = mappedHistorico[mappedHistorico.length - 2];
-        const pct = ((latest.tipo_cambio - prev.tipo_cambio) / prev.tipo_cambio) * 100;
-        base.indicadores_actuales.tipo_cambio.cambio_porcentaje = parseFloat(pct.toFixed(2));
+      const prev = mappedHistorico.length > 1 ? mappedHistorico[mappedHistorico.length - 2] : latest;
+
+      base.indicadores_actuales.tipo_cambio = {
+        valor: latest.tipo_cambio,
+        cambio_porcentaje: parseFloat((((latest.tipo_cambio - prev.tipo_cambio) / prev.tipo_cambio) * 100).toFixed(2)),
+        tendencia: "estable",
+        fecha: latest.fecha
+      };
+
+      base.indicadores_actuales.rin = {
+        valor: latest.rin,
+        cambio_anual_m: 1280,
+        meta_seguridad_pbi: 27.5,
+        fecha: latest.fecha
+      };
+
+      base.indicadores_actuales.riesgo_pais = {
+        valor: latest.riesgo_pais,
+        cambio_bps: latest.riesgo_pais - prev.riesgo_pais,
+        promedio_latam: 320,
+        fecha: latest.fecha
+      };
+
+      base.indicadores_actuales.inflacion = {
+        valor: latest.inflacion,
+        cambio_porcentaje: 0.05,
+        tendencia: latest.inflacion >= 1.0 && latest.inflacion <= 3.0 ? "dentro_rango" : "monitoreo",
+        fecha: latest.fecha
+      };
+
+      // Tasas y Commodities
+      const diffTasa = parseFloat((latest.tasa_bcrp - latest.tasa_usd).toFixed(2));
+      base.indicadores_actuales.tasa_interes_bcrp = {
+        valor: latest.tasa_bcrp,
+        tasa_usd: latest.tasa_usd,
+        diferencial_carry: diffTasa,
+        descripcion: diffTasa > 0 ? "Premio positivo por mantener Soles (Carry Trade)" : "Presión por diferencial estrecho",
+        fecha: latest.fecha
+      };
+
+      const cobrePct = parseFloat((((latest.cobre - prev.cobre) / prev.cobre) * 100).toFixed(2));
+      base.indicadores_actuales.cobre_precio = {
+        valor: latest.cobre,
+        unidad: "cUS$/lb",
+        cambio_porcentaje: isNaN(cobrePct) ? 0 : cobrePct,
+        fecha: latest.fecha
+      };
+
+      const oroPct = parseFloat((((latest.oro - prev.oro) / prev.oro) * 100).toFixed(2));
+      base.indicadores_actuales.oro_precio = {
+        valor: latest.oro,
+        unidad: "US$/oz",
+        cambio_porcentaje: isNaN(oroPct) ? 0 : oroPct,
+        fecha: latest.fecha
+      };
+
+      // Calcular Score de Fortaleza
+      const rinPctPbi = (latest.rin / 2640);
+      const pilarRIN = Math.min(30, Math.max(10, (rinPctPbi / 28) * 30));
+      let pilarInf = 25;
+      if (latest.inflacion > 3.0) {
+        pilarInf = Math.max(5, 25 - (latest.inflacion - 3.0) * 7);
+      } else if (latest.inflacion < 1.0) {
+        pilarInf = Math.max(5, 25 - (1.0 - latest.inflacion) * 10);
       }
+      let pilarEMBI = 25;
+      if (latest.riesgo_pais > 120) {
+        pilarEMBI = Math.max(5, 25 - ((latest.riesgo_pais - 120) / 100) * 10);
+      }
+      const pilarCarry = diffTasa >= 0.5 ? 10 : (diffTasa >= 0 ? 8 : 4);
+      const pilarCobre = latest.cobre >= 400 ? 10 : (latest.cobre >= 350 ? 7 : 4);
+      const pilarMotor = pilarCarry + pilarCobre;
+
+      const totalScore = Math.min(100, Math.max(10, Math.round(pilarRIN + pilarInf + pilarEMBI + pilarMotor)));
+      let estadoFortaleza = "Solidez Extrema";
+      let colorFortaleza = "emerald";
+      if (totalScore < 50) {
+        estadoFortaleza = "Alerta de Tensión";
+        colorFortaleza = "red";
+      } else if (totalScore < 70) {
+        estadoFortaleza = "Monitoreo Cauteloso";
+        colorFortaleza = "orange";
+      } else if (totalScore < 85) {
+        estadoFortaleza = "Estabilidad Sostenida";
+        colorFortaleza = "blue";
+      }
+
+      base.indicadores_actuales.indice_fortaleza = {
+        score: totalScore,
+        estado: estadoFortaleza,
+        color: colorFortaleza,
+        pilares: {
+          reservas_pts: Math.round(pilarRIN),
+          inflacion_pts: Math.round(pilarInf),
+          riesgo_soberano_pts: Math.round(pilarEMBI),
+          politica_commodities_pts: Math.round(pilarMotor)
+        },
+        fecha: latest.fecha
+      };
     }
   }
   return base;
@@ -592,6 +712,152 @@ function renderHeaderTermometro() {
   } else {
     balanceForceText.innerText = 'Equilibrio de Fuerzas Macroeconómicas';
     balanceForceText.className = 'text-xs font-semibold text-blue-600';
+  }
+}
+
+// 1.5. Índice de Fortaleza del Sol (Score Macroeconómico 0 - 100)
+function renderIndiceFortalezaSol() {
+  const data = state.data;
+  if (!data || !data.indicadores_actuales) return;
+  
+  const fortaleza = data.indicadores_actuales.indice_fortaleza;
+  const latest = data.historico && data.historico.length > 0 
+    ? data.historico[data.historico.length - 1] 
+    : { rin: 98255, inflacion: 4.07, riesgo_pais: 109, tasa_bcrp: 4.25, tasa_usd: 3.75, cobre: 657.3 };
+  
+  // Elementos UI
+  const scoreValEl = document.getElementById('score-val');
+  const scoreBadgeEl = document.getElementById('score-badge-estado');
+  const scoreBarFillEl = document.getElementById('score-bar-fill');
+  
+  const pilarRinScore = document.getElementById('pilar-rin-score');
+  const pilarRinDesc = document.getElementById('pilar-rin-desc');
+  const pilarInfScore = document.getElementById('pilar-inf-score');
+  const pilarInfDesc = document.getElementById('pilar-inf-desc');
+  const pilarEmbiScore = document.getElementById('pilar-embi-score');
+  const pilarEmbiDesc = document.getElementById('pilar-embi-desc');
+  const pilarMotorScore = document.getElementById('pilar-motor-score');
+  const pilarMotorDesc = document.getElementById('pilar-motor-desc');
+
+  const score = fortaleza ? fortaleza.score : 91;
+  const estado = fortaleza ? fortaleza.estado : 'Solidez Extrema';
+  const pilares = fortaleza ? fortaleza.pilares : {
+    reservas_pts: 30,
+    inflacion_pts: 21,
+    riesgo_soberano_pts: 25,
+    politica_commodities_pts: 15
+  };
+
+  if (scoreValEl) scoreValEl.innerText = score;
+  
+  if (scoreBadgeEl) {
+    scoreBadgeEl.innerText = estado;
+    if (score >= 85) {
+      scoreBadgeEl.className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 uppercase tracking-wider';
+    } else if (score >= 70) {
+      scoreBadgeEl.className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200 uppercase tracking-wider';
+    } else if (score >= 50) {
+      scoreBadgeEl.className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-orange-50 text-orange-700 border border-orange-200 uppercase tracking-wider';
+    } else {
+      scoreBadgeEl.className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-red-50 text-red-700 border border-red-200 uppercase tracking-wider';
+    }
+  }
+
+  if (scoreBarFillEl) {
+    scoreBarFillEl.style.width = `${score}%`;
+    if (score >= 85) {
+      scoreBarFillEl.className = 'bg-gradient-to-r from-teal-500 to-emerald-500 h-full rounded-full transition-all duration-700';
+    } else if (score >= 70) {
+      scoreBarFillEl.className = 'bg-gradient-to-r from-blue-500 to-indigo-500 h-full rounded-full transition-all duration-700';
+    } else {
+      scoreBarFillEl.className = 'bg-gradient-to-r from-amber-500 to-orange-500 h-full rounded-full transition-all duration-700';
+    }
+  }
+
+  // Pilares
+  if (pilarRinScore) pilarRinScore.innerText = `${pilares.reservas_pts}/30`;
+  if (pilarRinDesc) {
+    const rinPct = (latest.rin / 2640).toFixed(1);
+    pilarRinDesc.innerText = `${rinPct}% del PBI (>27% meta)`;
+  }
+
+  if (pilarInfScore) pilarInfScore.innerText = `${pilares.inflacion_pts}/25`;
+  if (pilarInfDesc) pilarInfDesc.innerText = `IPC: ${latest.inflacion.toFixed(2)}% (Meta 1%-3%)`;
+
+  if (pilarEmbiScore) pilarEmbiScore.innerText = `${pilares.riesgo_soberano_pts}/25`;
+  if (pilarEmbiDesc) pilarEmbiDesc.innerText = `${latest.riesgo_pais} bps (Menor de Latam)`;
+
+  const diffTasa = ((latest.tasa_bcrp || 4.25) - (latest.tasa_usd || 3.75)).toFixed(1);
+  if (pilarMotorScore) pilarMotorScore.innerText = `${pilares.politica_commodities_pts}/20`;
+  if (pilarMotorDesc) pilarMotorDesc.innerText = `Spread +${diffTasa}% • Cobre ${(latest.cobre || 657.3).toFixed(1)}`;
+}
+
+// 1.6. Motores de Divisas: Tasas de Interés y Commodities
+function renderMotoresDivisas() {
+  const data = state.data;
+  if (!data || !data.indicadores_actuales) return;
+
+  const historico = data.historico;
+  const latest = historico && historico.length > 0 ? historico[historico.length - 1] : {};
+  const prev = historico && historico.length > 1 ? historico[historico.length - 2] : latest;
+
+  const tasaBcrp = latest.tasa_bcrp || 4.25;
+  const tasaUsd = latest.tasa_usd || 3.75;
+  const diffCarry = (tasaBcrp - tasaUsd).toFixed(2);
+
+  // Elementos Tasas
+  const tasaBcrpEl = document.getElementById('tasa-bcrp-val');
+  const tasaFedEl = document.getElementById('tasa-fed-val');
+  const carrySpreadBadge = document.getElementById('carry-spread-badge');
+  const carryDescText = document.getElementById('carry-desc-text');
+
+  if (tasaBcrpEl) tasaBcrpEl.innerText = `${tasaBcrp.toFixed(2)}%`;
+  if (tasaFedEl) tasaFedEl.innerText = `${tasaUsd.toFixed(2)}%`;
+  if (carrySpreadBadge) {
+    const sign = diffCarry >= 0 ? '+' : '';
+    carrySpreadBadge.innerText = `${sign}${diffCarry}%`;
+    carrySpreadBadge.className = diffCarry >= 0
+      ? 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200'
+      : 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-orange-50 text-orange-700 border border-orange-200';
+  }
+  if (carryDescText) {
+    if (diffCarry > 0) {
+      carryDescText.innerHTML = `<i class="fa-solid fa-circle-info text-blue-500 flex-shrink-0"></i><span>Premio positivo (+${diffCarry}%) por mantener activos en Soles (*Carry Trade*).</span>`;
+    } else {
+      carryDescText.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-orange-500 flex-shrink-0"></i><span>Diferencial ajustado respecto a tasas en dólares.</span>`;
+    }
+  }
+
+  // Elementos Cobre
+  const cobreValEl = document.getElementById('cobre-val');
+  const cobreChangeBadge = document.getElementById('cobre-change-badge');
+  const cobreVal = latest.cobre || 657.3;
+  const prevCobre = prev.cobre || cobreVal;
+  const cobrePct = prevCobre > 0 ? (((cobreVal - prevCobre) / prevCobre) * 100).toFixed(1) : '0.0';
+
+  if (cobreValEl) cobreValEl.innerText = cobreVal.toFixed(1);
+  if (cobreChangeBadge) {
+    const sign = cobrePct >= 0 ? '+' : '';
+    cobreChangeBadge.innerText = `${sign}${cobrePct}%`;
+    cobreChangeBadge.className = cobrePct >= 0
+      ? 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200'
+      : 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-orange-50 text-orange-700 border border-orange-200';
+  }
+
+  // Elementos Oro
+  const oroValEl = document.getElementById('oro-val');
+  const oroChangeBadge = document.getElementById('oro-change-badge');
+  const oroVal = latest.oro || 4599.1;
+  const prevOro = prev.oro || oroVal;
+  const oroPct = prevOro > 0 ? (((oroVal - prevOro) / prevOro) * 100).toFixed(1) : '0.0';
+
+  if (oroValEl) oroValEl.innerText = `$ ${oroVal.toLocaleString('en-US', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}`;
+  if (oroChangeBadge) {
+    const sign = oroPct >= 0 ? '+' : '';
+    oroChangeBadge.innerText = `${sign}${oroPct}%`;
+    oroChangeBadge.className = oroPct >= 0
+      ? 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200'
+      : 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-orange-50 text-orange-700 border border-orange-200';
   }
 }
 
@@ -1056,6 +1322,8 @@ function initFilterButtons() {
       
       // Actualizar todo el dashboard de acuerdo al filtro de tiempo
       renderHeaderTermometro();
+      renderIndiceFortalezaSol();
+      renderMotoresDivisas();
       renderEstructuraSolidez();
       updateBandChart();
     });
