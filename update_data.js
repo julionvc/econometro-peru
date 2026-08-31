@@ -10,12 +10,58 @@ const https = require('https');
 // Configuración de rutas
 const JSON_FILE_PATH = path.join(__dirname, 'datos_dashboard.json');
 
+// Extrae y parsea el objeto JSON limpio incluso si el servidor del BCRP agrega advertencias PHP o HTML al final
+function extractCleanJson(rawText) {
+  if (typeof rawText !== 'string') return rawText;
+  const start = rawText.indexOf('{');
+  if (start === -1) {
+    return JSON.parse(rawText);
+  }
+  let depth = 0;
+  let inString = false;
+  let escape = false;
+  let end = -1;
+
+  for (let i = start; i < rawText.length; i++) {
+    const char = rawText[i];
+    if (escape) {
+      escape = false;
+      continue;
+    }
+    if (char === '\\') {
+      escape = true;
+      continue;
+    }
+    if (char === '"') {
+      inString = !inString;
+      continue;
+    }
+    if (!inString) {
+      if (char === '{') {
+        depth++;
+      } else if (char === '}') {
+        depth--;
+        if (depth === 0) {
+          end = i;
+          break;
+        }
+      }
+    }
+  }
+
+  if (end !== -1) {
+    return JSON.parse(rawText.substring(start, end + 1));
+  }
+  return JSON.parse(rawText);
+}
+
 // Función auxiliar para realizar peticiones HTTP GET y retornar JSON
 function fetchJson(url) {
   return new Promise((resolve, reject) => {
     const options = {
       headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'Accept': 'application/json, text/plain, */*'
       }
     };
     
@@ -29,7 +75,7 @@ function fetchJson(url) {
       res.on('data', (chunk) => { data += chunk; });
       res.on('end', () => {
         try {
-          resolve(JSON.parse(data));
+          resolve(extractCleanJson(data));
         } catch (e) {
           reject(new Error(`Error al decodificar JSON de BCRP: ${e.message}`));
         }

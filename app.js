@@ -221,6 +221,51 @@ function updateStatusIndicator(status, message) {
   }
 }
 
+// Extrae y parsea el objeto JSON limpio incluso si el servidor del BCRP agrega advertencias PHP o HTML al final
+function extractCleanJson(rawText) {
+  if (typeof rawText !== 'string') return rawText;
+  const start = rawText.indexOf('{');
+  if (start === -1) {
+    return JSON.parse(rawText);
+  }
+  let depth = 0;
+  let inString = false;
+  let escape = false;
+  let end = -1;
+
+  for (let i = start; i < rawText.length; i++) {
+    const char = rawText[i];
+    if (escape) {
+      escape = false;
+      continue;
+    }
+    if (char === '\\') {
+      escape = true;
+      continue;
+    }
+    if (char === '"') {
+      inString = !inString;
+      continue;
+    }
+    if (!inString) {
+      if (char === '{') {
+        depth++;
+      } else if (char === '}') {
+        depth--;
+        if (depth === 0) {
+          end = i;
+          break;
+        }
+      }
+    }
+  }
+
+  if (end !== -1) {
+    return JSON.parse(rawText.substring(start, end + 1));
+  }
+  return JSON.parse(rawText);
+}
+
 // Carga asíncrona robusta con fallbacks
 async function fetchAllData(cacheBust = false) {
   // 1. Si no es un refresco forzado, intentar cargar desde caché local para carga instantánea (<100ms)
@@ -262,8 +307,10 @@ async function fetchAllData(cacheBust = false) {
     ]);
     
     if (resDaily.ok && resMonthly.ok) {
-      const dailyData = await resDaily.json();
-      const monthlyData = await resMonthly.json();
+      const dailyText = await resDaily.text();
+      const monthlyText = await resMonthly.text();
+      const dailyData = extractCleanJson(dailyText);
+      const monthlyData = extractCleanJson(monthlyText);
       if (dailyData && dailyData.periods && dailyData.periods.length > 0) {
         state.data = parseBCRPResponse(dailyData, monthlyData);
         state.source = 'api';
@@ -284,8 +331,10 @@ async function fetchAllData(cacheBust = false) {
     ]);
     
     if (resDaily.ok && resMonthly.ok) {
-      const dailyData = await resDaily.json();
-      const monthlyData = await resMonthly.json();
+      const dailyText = await resDaily.text();
+      const monthlyText = await resMonthly.text();
+      const dailyData = extractCleanJson(dailyText);
+      const monthlyData = extractCleanJson(monthlyText);
       state.data = parseBCRPResponse(dailyData, monthlyData);
       state.source = 'api';
       updateStatusIndicator('api');
