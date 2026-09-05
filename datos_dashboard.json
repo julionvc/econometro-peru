@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "fecha_actualizacion": "2026-09-04",
+    "fecha_actualizacion": "2026-09-05",
     "fuente": "Banco Central de Reserva del Perú (BCRPData) - Actualizado Automático",
     "series": {
       "tipo_cambio": "PD04638PD",
@@ -21,7 +21,7 @@
       "fecha": "2026-08-31"
     },
     "inflacion": {
-      "valor": 4.06515256208199,
+      "valor": 4.43780929778608,
       "cambio_porcentaje": 0.05,
       "tendencia": "monitoreo",
       "fecha": "2026-08-31"
@@ -64,12 +64,12 @@
       "fecha": "2026-08-31"
     },
     "indice_fortaleza": {
-      "score": 93,
+      "score": 90,
       "estado": "Solidez Extrema",
       "color": "emerald",
       "pilares": {
         "reservas_pts": 30,
-        "inflacion_pts": 18,
+        "inflacion_pts": 15,
         "riesgo_soberano_pts": 25,
         "politica_commodities_pts": 20
       },
@@ -103,25 +103,25 @@
     },
     {
       "fecha": "2026-01-03",
-      "tipo_cambio": 3.35771428571429,
-      "rin": 98670.48227979,
+      "tipo_cambio": 3.36042857142857,
+      "rin": 98745.63449125,
       "tasa_bcrp": 4.25,
       "tasa_usd": 3.75,
-      "cobre": 651.1,
-      "oro": 4381.7,
-      "riesgo_pais": 109,
+      "cobre": 651.3,
+      "oro": 4472.9,
+      "riesgo_pais": 107,
       "inflacion": 4.06515256208199,
       "intervencion": 0
     },
     {
       "fecha": "2026-01-04",
-      "tipo_cambio": 3.35771428571429,
-      "rin": 98670.48227979,
+      "tipo_cambio": 3.36042857142857,
+      "rin": 98745.63449125,
       "tasa_bcrp": 4.25,
       "tasa_usd": 3.75,
-      "cobre": 651.1,
-      "oro": 4381.7,
-      "riesgo_pais": 109,
+      "cobre": 651.3,
+      "oro": 4472.9,
+      "riesgo_pais": 107,
       "inflacion": 4.06515256208199,
       "intervencion": 0
     },
@@ -1394,7 +1394,7 @@
       "cobre": 632.5,
       "oro": 4054.3,
       "riesgo_pais": 111,
-      "inflacion": 4.06515256208199,
+      "inflacion": 4.43780929778608,
       "intervencion": 0
     },
     {
@@ -1406,7 +1406,7 @@
       "cobre": 643.9,
       "oro": 4078,
       "riesgo_pais": 111,
-      "inflacion": 4.06515256208199,
+      "inflacion": 4.43780929778608,
       "intervencion": 0
     },
     {
@@ -1418,7 +1418,7 @@
       "cobre": 642.6,
       "oro": 4246.8,
       "riesgo_pais": 110,
-      "inflacion": 4.06515256208199,
+      "inflacion": 4.43780929778608,
       "intervencion": 0
     },
     {
@@ -1430,7 +1430,7 @@
       "cobre": 655.7,
       "oro": 4239.4,
       "riesgo_pais": 104,
-      "inflacion": 4.06515256208199,
+      "inflacion": 4.43780929778608,
       "intervencion": 0
     },
     {
@@ -1442,7 +1442,7 @@
       "cobre": 645.9,
       "oro": 4341.6,
       "riesgo_pais": 108,
-      "inflacion": 4.06515256208199,
+      "inflacion": 4.43780929778608,
       "intervencion": 0
     },
     {
@@ -1454,7 +1454,7 @@
       "cobre": 648.2,
       "oro": 4390.9,
       "riesgo_pais": 104,
-      "inflacion": 4.06515256208199,
+      "inflacion": 4.43780929778608,
       "intervencion": 0
     },
     {
@@ -1466,7 +1466,7 @@
       "cobre": 654.3,
       "oro": 4370.1,
       "riesgo_pais": 106,
-      "inflacion": 4.06515256208199,
+      "inflacion": 4.43780929778608,
       "intervencion": 0
     },
     {
@@ -1478,7 +1478,7 @@
       "cobre": 652.1,
       "oro": 4408.3,
       "riesgo_pais": 106,
-      "inflacion": 4.06515256208199,
+      "inflacion": 4.43780929778608,
       "intervencion": 0
     },
     {
@@ -1490,7 +1490,7 @@
       "cobre": 648,
       "oro": 4350.4,
       "riesgo_pais": 107,
-      "inflacion": 4.06515256208199,
+      "inflacion": 4.43780929778608,
       "intervencion": 0
     },
     {
@@ -1502,7 +1502,7 @@
       "cobre": 659.8,
       "oro": 4376.4,
       "riesgo_pais": 105,
-      "inflacion": 4.06515256208199,
+      "inflacion": 4.43780929778608,
       "intervencion": 0
     },
     {
@@ -1514,7 +1514,7 @@
       "cobre": 673.6,
       "oro": 4416,
       "riesgo_pais": 104,
-      "inflacion": 4.06515256208199,
+      "inflacion": 4.43780929778608,
       "intervencion": 0
     },
     {
@@ -1526,7 +1526,7 @@
       "cobre": 650.2,
       "oro": 4334.5,
       "riesgo_pais": 112,
-      "inflacion": 4.06515256208199,
+      "inflacion": 4.43780929778608,
       "intervencion": 0
     },
     {
@@ -1538,7 +1538,7 @@
       "cobre": 643.2,
       "oro": 4515.6,
       "riesgo_pais": 112,
-      "inflacion": 4.06515256208199,
+      "inflacion": 4.43780929778608,
       "intervencion": 0
     },
     {
@@ -1550,7 +1550,7 @@
       "cobre": 642.7,
       "oro": 4516.6,
       "riesgo_pais": 111,
-      "inflacion": 4.06515256208199,
+      "inflacion": 4.43780929778608,
       "intervencion": 0
     },
     {
@@ -1562,7 +1562,7 @@
       "cobre": 648.2,
       "oro": 4603.1,
       "riesgo_pais": 111,
-      "inflacion": 4.06515256208199,
+      "inflacion": 4.43780929778608,
       "intervencion": 0
     },
     {
@@ -1574,7 +1574,7 @@
       "cobre": 650.6,
       "oro": 4652.2,
       "riesgo_pais": 113,
-      "inflacion": 4.06515256208199,
+      "inflacion": 4.43780929778608,
       "intervencion": 0
     },
     {
@@ -1586,7 +1586,7 @@
       "cobre": 654.3,
       "oro": 4657.2,
       "riesgo_pais": 116,
-      "inflacion": 4.06515256208199,
+      "inflacion": 4.43780929778608,
       "intervencion": 0
     },
     {
@@ -1598,7 +1598,7 @@
       "cobre": 658.8,
       "oro": 4591.1,
       "riesgo_pais": 113,
-      "inflacion": 4.06515256208199,
+      "inflacion": 4.43780929778608,
       "intervencion": 0
     },
     {
@@ -1610,7 +1610,7 @@
       "cobre": 657.3,
       "oro": 4599.1,
       "riesgo_pais": 109,
-      "inflacion": 4.06515256208199,
+      "inflacion": 4.43780929778608,
       "intervencion": 0
     },
     {
@@ -1622,7 +1622,7 @@
       "cobre": 659.3,
       "oro": 4455.1,
       "riesgo_pais": 106,
-      "inflacion": 4.06515256208199,
+      "inflacion": 4.43780929778608,
       "intervencion": 0
     },
     {
@@ -1634,7 +1634,7 @@
       "cobre": 659.3,
       "oro": 4437.4,
       "riesgo_pais": 106,
-      "inflacion": 4.06515256208199,
+      "inflacion": 4.43780929778608,
       "intervencion": 0
     }
   ],
