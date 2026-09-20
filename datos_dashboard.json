@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "fecha_actualizacion": "2026-09-19",
+    "fecha_actualizacion": "2026-09-20",
     "fuente": "Banco Central de Reserva del Perú (BCRPData) - Actualizado Automático",
     "series": {
       "tipo_cambio": "PD04638PD",
@@ -243,18 +243,6 @@
       "oro": 4341.7,
       "riesgo_pais": 107,
       "inflacion": 4.43780929778608,
-      "intervencion": 0
-    },
-    {
-      "fecha": "2026-03-23",
-      "tipo_cambio": 3.45585714285714,
-      "rin": 98354.53721659,
-      "tasa_bcrp": 4.25,
-      "tasa_usd": 3.75,
-      "cobre": 539.4,
-      "oro": 4407.2,
-      "riesgo_pais": 140,
-      "inflacion": 3.80454581291585,
       "intervencion": 0
     },
     {
