@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "fecha_actualizacion": "2026-09-23",
+    "fecha_actualizacion": "2026-09-24",
     "fuente": "Banco Central de Reserva del Perú (BCRPData) - Actualizado Automático",
     "series": {
       "tipo_cambio": "PD04638PD",
@@ -251,47 +251,47 @@
       "rin": 97049.32110984,
       "tasa_bcrp": 4.25,
       "tasa_usd": 3.75,
-      "cobre": 659,
-      "oro": 4378.6,
+      "cobre": 670.8,
+      "oro": 4343.4,
       "riesgo_pais": 107,
       "inflacion": 4.43780929778608,
       "intervencion": 0
     },
     {
       "fecha": "2026-01-22",
-      "tipo_cambio": 3.35514285714286,
-      "rin": 97049.32110984,
+      "tipo_cambio": 3.36064285714286,
+      "rin": 96945.86427817,
       "tasa_bcrp": 4.25,
       "tasa_usd": 3.75,
-      "cobre": 659,
-      "oro": 4378.6,
+      "cobre": 671.2,
+      "oro": 4360.7,
       "riesgo_pais": 107,
       "inflacion": 4.43780929778608,
       "intervencion": 0
     },
     {
       "fecha": "2026-01-23",
-      "tipo_cambio": 3.35514285714286,
-      "rin": 97049.32110984,
+      "tipo_cambio": 3.36064285714286,
+      "rin": 96945.86427817,
       "tasa_bcrp": 4.25,
       "tasa_usd": 3.75,
-      "cobre": 659,
-      "oro": 4378.6,
+      "cobre": 671.2,
+      "oro": 4360.7,
       "riesgo_pais": 107,
       "inflacion": 4.43780929778608,
       "intervencion": 0
     },
     {
-      "fecha": "2026-03-27",
-      "tipo_cambio": 3.48992857142857,
-      "rin": 96059.21574269,
-      "tasa_bcrp": 4.17,
+      "fecha": "2026-01-24",
+      "tipo_cambio": 3.36064285714286,
+      "rin": 96945.86427817,
+      "tasa_bcrp": 4.25,
       "tasa_usd": 3.75,
-      "cobre": 546.4,
-      "oro": 4494.1,
-      "riesgo_pais": 140,
-      "inflacion": 3.80454581291585,
-      "intervencion": -80
+      "cobre": 671.2,
+      "oro": 4360.7,
+      "riesgo_pais": 107,
+      "inflacion": 4.43780929778608,
+      "intervencion": 0
     },
     {
       "fecha": "2026-03-30",
@@ -303,7 +303,7 @@
       "oro": 4510.9,
       "riesgo_pais": 145,
       "inflacion": 3.80454581291585,
-      "intervencion": 0
+      "intervencion": -80
     },
     {
       "fecha": "2026-03-31",
