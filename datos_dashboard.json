@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "fecha_actualizacion": "2026-10-02",
+    "fecha_actualizacion": "2026-10-03",
     "fuente": "Banco Central de Reserva del Perú (BCRPData) - Actualizado Automático",
     "series": {
       "tipo_cambio": "PD04638PD",
@@ -15,7 +15,7 @@
   },
   "indicadores_actuales": {
     "tipo_cambio": {
-      "valor": 3.36292857142857,
+      "valor": 3.45385714285714,
       "cambio_porcentaje": 0,
       "tendencia": "estable",
       "fecha": "2026-10-02"
@@ -46,32 +46,32 @@
     },
     "tasa_interes_bcrp": {
       "valor": 4.25,
-      "tasa_usd": 3.75,
-      "diferencial_carry": 0.5,
+      "tasa_usd": 4,
+      "diferencial_carry": 0.25,
       "descripcion": "Premio positivo por mantener Soles (Carry Trade)",
       "fecha": "2026-10-02"
     },
     "cobre_precio": {
-      "valor": 659.3,
+      "valor": 650.2,
       "unidad": "cUS$/lb",
       "cambio_porcentaje": 0,
       "fecha": "2026-10-02"
     },
     "oro_precio": {
-      "valor": 4437.4,
+      "valor": 4177.7,
       "unidad": "US$/oz",
       "cambio_porcentaje": 0,
       "fecha": "2026-10-02"
     },
     "indice_fortaleza": {
-      "score": 90,
+      "score": 88,
       "estado": "Solidez Extrema",
       "color": "emerald",
       "pilares": {
         "reservas_pts": 30,
         "inflacion_pts": 15,
         "riesgo_soberano_pts": 25,
-        "politica_commodities_pts": 20
+        "politica_commodities_pts": 18
       },
       "fecha": "2026-10-02"
     }
@@ -1615,24 +1615,24 @@
     },
     {
       "fecha": "2026-10-01",
-      "tipo_cambio": 3.36292857142857,
+      "tipo_cambio": 3.45385714285714,
       "rin": 96517.90583504,
       "tasa_bcrp": 4.25,
-      "tasa_usd": 3.75,
-      "cobre": 659.3,
-      "oro": 4437.4,
+      "tasa_usd": 4,
+      "cobre": 650.2,
+      "oro": 4177.7,
       "riesgo_pais": 106,
       "inflacion": 4.43780929778608,
       "intervencion": 0
     },
     {
       "fecha": "2026-10-02",
-      "tipo_cambio": 3.36292857142857,
+      "tipo_cambio": 3.45385714285714,
       "rin": 96517.90583504,
       "tasa_bcrp": 4.25,
-      "tasa_usd": 3.75,
-      "cobre": 659.3,
-      "oro": 4437.4,
+      "tasa_usd": 4,
+      "cobre": 650.2,
+      "oro": 4177.7,
       "riesgo_pais": 106,
       "inflacion": 4.43780929778608,
       "intervencion": 0
