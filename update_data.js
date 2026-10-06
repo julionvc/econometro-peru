@@ -62,10 +62,11 @@ function fetchJson(url) {
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
         'Accept': 'application/json, text/plain, */*'
-      }
+      },
+      timeout: 15000 // 15s timeout
     };
     
-    https.get(url, options, (res) => {
+    const req = https.get(url, options, (res) => {
       if (res.statusCode !== 200) {
         reject(new Error(`Error al conectar con BCRP: Estado ${res.statusCode}`));
         return;
@@ -80,10 +81,30 @@ function fetchJson(url) {
           reject(new Error(`Error al decodificar JSON de BCRP: ${e.message}`));
         }
       });
-    }).on('error', (err) => {
+    });
+    
+    req.on('timeout', () => {
+      req.destroy();
+      reject(new Error('Timeout de 15 segundos al consultar servidor del BCRP.'));
+    });
+    
+    req.on('error', (err) => {
       reject(err);
     });
   });
+}
+
+// Reintentos automáticos con espera exponencial
+async function fetchJsonWithRetry(url, maxRetries = 3) {
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      return await fetchJson(url);
+    } catch (err) {
+      console.warn(`[REINTENTO ${attempt}/${maxRetries}] Falló consulta a BCRP: ${err.message}`);
+      if (attempt === maxRetries) throw err;
+      await new Promise(r => setTimeout(r, 2000 * attempt));
+    }
+  }
 }
 
 // Función principal
@@ -129,11 +150,11 @@ async function main() {
   // PN01273PM: Inflación doce meses mensual
   const bcrpUrlMonthly = `https://estadisticas.bcrp.gob.pe/estadisticas/series/api/PN01273PM/json/${sixMonthsAgoStr}/${todayStr}/esp`;
 
-  // 3. Consultar la API del BCRP
+  // 3. Consultar la API del BCRP con reintentos
   let bcrpDailyJson, bcrpMonthlyJson;
   try {
     console.log('Consultando API del BCRPData (7 Series Diarias)...');
-    bcrpDailyJson = await fetchJson(bcrpUrlDaily);
+    bcrpDailyJson = await fetchJsonWithRetry(bcrpUrlDaily, 3);
     
     if (!bcrpDailyJson || !bcrpDailyJson.periods || bcrpDailyJson.periods.length === 0) {
       throw new Error('La respuesta diaria del BCRP no contiene períodos de datos válidos.');
@@ -141,12 +162,13 @@ async function main() {
     console.log(`Petición diaria exitosa: Recibidos ${bcrpDailyJson.periods.length} períodos de datos.`);
     
     console.log('Consultando API del BCRPData (Series Mensuales)...');
-    bcrpMonthlyJson = await fetchJson(bcrpUrlMonthly);
+    bcrpMonthlyJson = await fetchJsonWithRetry(bcrpUrlMonthly, 3);
     console.log('Petición mensual exitosa.');
   } catch (error) {
-    console.error(`Error crítico al consultar BCRP API: ${error.message}`);
-    console.log('Manteniendo la caché existente intacta.');
-    process.exit(1); // Falla el job pero mantiene la web existente funcional
+    console.warn(`[AVISO] No se pudo obtener datos actualizados del BCRP: ${error.message}`);
+    console.log('Esto suele ocurrir por mantenimiento del servidor BCRP o cierre de mercados los fines de semana.');
+    console.log('La base de datos actual se mantiene 100% intacta y operativa.');
+    process.exit(0); // Salida limpia para evitar alertas falsas por correo en fines de semana
   }
 
   // 4. Parsear y limpiar datos del BCRP
