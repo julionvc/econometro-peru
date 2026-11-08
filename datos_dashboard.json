@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "fecha_actualizacion": "2026-11-07",
+    "fecha_actualizacion": "2026-11-08",
     "fuente": "Banco Central de Reserva del Perú (BCRPData) - Actualizado Automático",
     "series": {
       "tipo_cambio": "PD04638PD",
@@ -86,7 +86,7 @@
       "cobre": 653,
       "oro": 4328.8,
       "riesgo_pais": 107,
-      "inflacion": 4.43780929778608,
+      "inflacion": 5.25100548299322,
       "intervencion": 0
     },
     {
@@ -98,7 +98,7 @@
       "cobre": 651.1,
       "oro": 4381.7,
       "riesgo_pais": 109,
-      "inflacion": 4.43780929778608,
+      "inflacion": 5.25100548299322,
       "intervencion": 0
     },
     {
@@ -110,7 +110,7 @@
       "cobre": 651.3,
       "oro": 4472.9,
       "riesgo_pais": 107,
-      "inflacion": 4.43780929778608,
+      "inflacion": 5.25100548299322,
       "intervencion": 0
     },
     {
@@ -122,7 +122,7 @@
       "cobre": 651.9,
       "oro": 4430,
       "riesgo_pais": 107,
-      "inflacion": 4.43780929778608,
+      "inflacion": 5.25100548299322,
       "intervencion": 0
     },
     {
@@ -134,7 +134,7 @@
       "cobre": 659.5,
       "oro": 4404.3,
       "riesgo_pais": 107,
-      "inflacion": 4.43780929778608,
+      "inflacion": 5.25100548299322,
       "intervencion": 0
     },
     {
@@ -146,7 +146,7 @@
       "cobre": 668.5,
       "oro": 4356,
       "riesgo_pais": 107,
-      "inflacion": 4.43780929778608,
+      "inflacion": 5.25100548299322,
       "intervencion": 0
     },
     {
@@ -158,7 +158,7 @@
       "cobre": 665.5,
       "oro": 4398.8,
       "riesgo_pais": 107,
-      "inflacion": 4.43780929778608,
+      "inflacion": 5.25100548299322,
       "intervencion": 0
     },
     {
@@ -170,7 +170,7 @@
       "cobre": 652.7,
       "oro": 4318.2,
       "riesgo_pais": 107,
-      "inflacion": 4.43780929778608,
+      "inflacion": 5.25100548299322,
       "intervencion": -80
     },
     {
@@ -182,7 +182,7 @@
       "cobre": 645.8,
       "oro": 4349.1,
       "riesgo_pais": 107,
-      "inflacion": 4.43780929778608,
+      "inflacion": 5.25100548299322,
       "intervencion": 0
     },
     {
@@ -194,7 +194,7 @@
       "cobre": 637,
       "oro": 4299.6,
       "riesgo_pais": 107,
-      "inflacion": 4.43780929778608,
+      "inflacion": 5.25100548299322,
       "intervencion": -80
     },
     {
@@ -206,7 +206,7 @@
       "cobre": 637.1,
       "oro": 4292.1,
       "riesgo_pais": 107,
-      "inflacion": 4.43780929778608,
+      "inflacion": 5.25100548299322,
       "intervencion": 0
     },
     {
@@ -218,7 +218,7 @@
       "cobre": 645.3,
       "oro": 4263.6,
       "riesgo_pais": 107,
-      "inflacion": 4.43780929778608,
+      "inflacion": 5.25100548299322,
       "intervencion": 0
     },
     {
@@ -230,7 +230,7 @@
       "cobre": 653.2,
       "oro": 4341.7,
       "riesgo_pais": 107,
-      "inflacion": 4.43780929778608,
+      "inflacion": 5.25100548299322,
       "intervencion": 0
     },
     {
@@ -242,7 +242,7 @@
       "cobre": 659,
       "oro": 4378.6,
       "riesgo_pais": 107,
-      "inflacion": 4.43780929778608,
+      "inflacion": 5.25100548299322,
       "intervencion": 0
     },
     {
@@ -254,7 +254,7 @@
       "cobre": 670.8,
       "oro": 4343.4,
       "riesgo_pais": 107,
-      "inflacion": 4.43780929778608,
+      "inflacion": 5.25100548299322,
       "intervencion": 0
     },
     {
@@ -266,7 +266,7 @@
       "cobre": 671.2,
       "oro": 4360.7,
       "riesgo_pais": 107,
-      "inflacion": 4.43780929778608,
+      "inflacion": 5.25100548299322,
       "intervencion": 0
     },
     {
@@ -278,7 +278,7 @@
       "cobre": 668.4,
       "oro": 4287.6,
       "riesgo_pais": 107,
-      "inflacion": 4.43780929778608,
+      "inflacion": 5.25100548299322,
       "intervencion": 0
     },
     {
@@ -290,7 +290,7 @@
       "cobre": 669.7,
       "oro": 4275,
       "riesgo_pais": 107,
-      "inflacion": 4.43780929778608,
+      "inflacion": 5.25100548299322,
       "intervencion": -80
     },
     {
@@ -302,7 +302,7 @@
       "cobre": 668.6,
       "oro": 4284.8,
       "riesgo_pais": 107,
-      "inflacion": 4.43780929778608,
+      "inflacion": 5.25100548299322,
       "intervencion": -80
     },
     {
@@ -314,7 +314,7 @@
       "cobre": 659.7,
       "oro": 4115.7,
       "riesgo_pais": 107,
-      "inflacion": 4.43780929778608,
+      "inflacion": 5.25100548299322,
       "intervencion": -80
     },
     {
@@ -326,7 +326,7 @@
       "cobre": 656.6,
       "oro": 4182.3,
       "riesgo_pais": 107,
-      "inflacion": 4.43780929778608,
+      "inflacion": 5.25100548299322,
       "intervencion": 0
     },
     {
@@ -338,19 +338,7 @@
       "cobre": 657.1,
       "oro": 4157.4,
       "riesgo_pais": 107,
-      "inflacion": 4.43780929778608,
-      "intervencion": 0
-    },
-    {
-      "fecha": "2026-05-11",
-      "tipo_cambio": 3.43257142857143,
-      "rin": 100731.07998815,
-      "tasa_bcrp": 4.25,
-      "tasa_usd": 3.75,
-      "cobre": 620.2,
-      "oro": 4736.2,
-      "riesgo_pais": 117,
-      "inflacion": 3.90505240621645,
+      "inflacion": 5.25100548299322,
       "intervencion": 0
     },
     {
