@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "fecha_actualizacion": "2026-11-13",
+    "fecha_actualizacion": "2026-11-14",
     "fuente": "Banco Central de Reserva del Perú (BCRPData) - Actualizado Automático",
     "series": {
       "tipo_cambio": "PD04638PD",
@@ -15,7 +15,7 @@
   },
   "indicadores_actuales": {
     "tipo_cambio": {
-      "valor": 3.41085714285714,
+      "valor": 3.40585714285714,
       "cambio_porcentaje": 0,
       "tendencia": "estable",
       "fecha": "2026-11-13"
@@ -27,7 +27,7 @@
       "fecha": "2026-11-13"
     },
     "rin": {
-      "valor": 96555.89523407,
+      "valor": 96109,
       "cambio_anual_m": 1280,
       "meta_seguridad_pbi": 27.5,
       "fecha": "2026-11-13"
@@ -45,20 +45,20 @@
       "fecha": "2026-11-13"
     },
     "tasa_interes_bcrp": {
-      "valor": 4.25,
+      "valor": 4.3,
       "tasa_usd": 4,
-      "diferencial_carry": 0.25,
+      "diferencial_carry": 0.3,
       "descripcion": "Premio positivo por mantener Soles (Carry Trade)",
       "fecha": "2026-11-13"
     },
     "cobre_precio": {
-      "valor": 634.7,
+      "valor": 622,
       "unidad": "cUS$/lb",
       "cambio_porcentaje": 0,
       "fecha": "2026-11-13"
     },
     "oro_precio": {
-      "valor": 4032.8,
+      "valor": 3877.1,
       "unidad": "US$/oz",
       "cambio_porcentaje": 0,
       "fecha": "2026-11-13"
@@ -1568,8 +1568,8 @@
     {
       "fecha": "2026-11-06",
       "tipo_cambio": 3.42857142857143,
-      "rin": 96568.79498379,
-      "tasa_bcrp": 4.25,
+      "rin": 96569,
+      "tasa_bcrp": 4.3,
       "tasa_usd": 4,
       "cobre": 633,
       "oro": 4070.8,
@@ -1580,8 +1580,8 @@
     {
       "fecha": "2026-11-09",
       "tipo_cambio": 3.41214285714286,
-      "rin": 96667.78658047,
-      "tasa_bcrp": 4.25,
+      "rin": 96668,
+      "tasa_bcrp": 4.3,
       "tasa_usd": 4,
       "cobre": 636.4,
       "oro": 4139.8,
@@ -1592,8 +1592,8 @@
     {
       "fecha": "2026-11-10",
       "tipo_cambio": 3.41621428571429,
-      "rin": 96645.4286094,
-      "tasa_bcrp": 4.25,
+      "rin": 96645,
+      "tasa_bcrp": 4.3,
       "tasa_usd": 4,
       "cobre": 634.7,
       "oro": 4032.8,
@@ -1604,35 +1604,35 @@
     {
       "fecha": "2026-11-11",
       "tipo_cambio": 3.41085714285714,
-      "rin": 96555.89523407,
-      "tasa_bcrp": 4.25,
+      "rin": 96556,
+      "tasa_bcrp": 4.3,
       "tasa_usd": 4,
-      "cobre": 634.7,
-      "oro": 4032.8,
+      "cobre": 629.4,
+      "oro": 3987.9,
       "riesgo_pais": 106,
       "inflacion": 5.25100548299322,
       "intervencion": 0
     },
     {
       "fecha": "2026-11-12",
-      "tipo_cambio": 3.41085714285714,
-      "rin": 96555.89523407,
-      "tasa_bcrp": 4.25,
+      "tipo_cambio": 3.40585714285714,
+      "rin": 96109,
+      "tasa_bcrp": 4.3,
       "tasa_usd": 4,
-      "cobre": 634.7,
-      "oro": 4032.8,
+      "cobre": 622,
+      "oro": 3877.1,
       "riesgo_pais": 106,
       "inflacion": 5.25100548299322,
       "intervencion": 0
     },
     {
       "fecha": "2026-11-13",
-      "tipo_cambio": 3.41085714285714,
-      "rin": 96555.89523407,
-      "tasa_bcrp": 4.25,
+      "tipo_cambio": 3.40585714285714,
+      "rin": 96109,
+      "tasa_bcrp": 4.3,
       "tasa_usd": 4,
-      "cobre": 634.7,
-      "oro": 4032.8,
+      "cobre": 622,
+      "oro": 3877.1,
       "riesgo_pais": 106,
       "inflacion": 5.25100548299322,
       "intervencion": 0
